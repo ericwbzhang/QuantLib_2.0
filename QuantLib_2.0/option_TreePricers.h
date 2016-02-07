@@ -12,5 +12,8 @@
 #include "BinomialTree.hpp"
 #include "BinomialBSTree.hpp"
 #include "AvgBinomialTree.hpp"
+#include "BBSRTree.hpp"
+
+
 
 #endif /* option_TreePricers_h */

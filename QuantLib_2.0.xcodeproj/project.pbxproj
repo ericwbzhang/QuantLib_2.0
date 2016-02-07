@@ -11,6 +11,7 @@
 		076B27C61C5A993F00F0FCEC /* BinomialTree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 076B27C41C5A993F00F0FCEC /* BinomialTree.cpp */; };
 		07ED5DA41C67EE05000A7BE6 /* BinomialBSTree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07ED5DA21C67EE05000A7BE6 /* BinomialBSTree.cpp */; };
 		07ED5DA71C67FD0F000A7BE6 /* AvgBinomialTree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07ED5DA51C67FD0F000A7BE6 /* AvgBinomialTree.cpp */; };
+		07ED5DAA1C680DEC000A7BE6 /* BBSRTree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07ED5DA81C680DEC000A7BE6 /* BBSRTree.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -38,6 +39,8 @@
 		07ED5DA31C67EE05000A7BE6 /* BinomialBSTree.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BinomialBSTree.hpp; sourceTree = "<group>"; };
 		07ED5DA51C67FD0F000A7BE6 /* AvgBinomialTree.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AvgBinomialTree.cpp; sourceTree = "<group>"; };
 		07ED5DA61C67FD0F000A7BE6 /* AvgBinomialTree.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AvgBinomialTree.hpp; sourceTree = "<group>"; };
+		07ED5DA81C680DEC000A7BE6 /* BBSRTree.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BBSRTree.cpp; sourceTree = "<group>"; };
+		07ED5DA91C680DEC000A7BE6 /* BBSRTree.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BBSRTree.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +100,8 @@
 				07ED5DA31C67EE05000A7BE6 /* BinomialBSTree.hpp */,
 				07ED5DA51C67FD0F000A7BE6 /* AvgBinomialTree.cpp */,
 				07ED5DA61C67FD0F000A7BE6 /* AvgBinomialTree.hpp */,
+				07ED5DA81C680DEC000A7BE6 /* BBSRTree.cpp */,
+				07ED5DA91C680DEC000A7BE6 /* BBSRTree.hpp */,
 			);
 			name = option_TreePricers;
 			sourceTree = "<group>";
@@ -166,6 +171,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07ED5DAA1C680DEC000A7BE6 /* BBSRTree.cpp in Sources */,
 				076B27C61C5A993F00F0FCEC /* BinomialTree.cpp in Sources */,
 				07ED5DA71C67FD0F000A7BE6 /* AvgBinomialTree.cpp in Sources */,
 				07ED5DA41C67EE05000A7BE6 /* BinomialBSTree.cpp in Sources */,
