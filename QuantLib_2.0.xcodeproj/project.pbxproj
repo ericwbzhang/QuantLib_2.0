@@ -1,0 +1,300 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		076B27BB1C5A95C700F0FCEC /* test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 076B27BA1C5A95C700F0FCEC /* test.cpp */; };
+		076B27C61C5A993F00F0FCEC /* BinomialTree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 076B27C41C5A993F00F0FCEC /* BinomialTree.cpp */; };
+		07ED5DA41C67EE05000A7BE6 /* BinomialBSTree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07ED5DA21C67EE05000A7BE6 /* BinomialBSTree.cpp */; };
+		07ED5DA71C67FD0F000A7BE6 /* AvgBinomialTree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07ED5DA51C67FD0F000A7BE6 /* AvgBinomialTree.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		076B27B51C5A95C700F0FCEC /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		076B27B71C5A95C700F0FCEC /* QuantLib_2.0 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = QuantLib_2.0; sourceTree = BUILT_PRODUCTS_DIR; };
+		076B27BA1C5A95C700F0FCEC /* test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = test.cpp; sourceTree = "<group>"; };
+		076B27C21C5A962700F0FCEC /* option.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = option.h; sourceTree = "<group>"; };
+		076B27C41C5A993F00F0FCEC /* BinomialTree.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BinomialTree.cpp; sourceTree = "<group>"; };
+		076B27C51C5A993F00F0FCEC /* BinomialTree.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BinomialTree.hpp; sourceTree = "<group>"; };
+		076B27C71C5AB1EA00F0FCEC /* option_TreePricers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = option_TreePricers.h; sourceTree = "<group>"; };
+		076B27C81C5AB27600F0FCEC /* optionInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = optionInfo.h; sourceTree = "<group>"; };
+		076B27CB1C5AB32100F0FCEC /* BS.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = BS.hpp; path = QuantLib_2.0/BS.hpp; sourceTree = "<group>"; };
+		07ED5DA21C67EE05000A7BE6 /* BinomialBSTree.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BinomialBSTree.cpp; sourceTree = "<group>"; };
+		07ED5DA31C67EE05000A7BE6 /* BinomialBSTree.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BinomialBSTree.hpp; sourceTree = "<group>"; };
+		07ED5DA51C67FD0F000A7BE6 /* AvgBinomialTree.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AvgBinomialTree.cpp; sourceTree = "<group>"; };
+		07ED5DA61C67FD0F000A7BE6 /* AvgBinomialTree.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AvgBinomialTree.hpp; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		076B27B41C5A95C700F0FCEC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		076B27AE1C5A95C700F0FCEC = {
+			isa = PBXGroup;
+			children = (
+				076B27B91C5A95C700F0FCEC /* QuantLib_2.0 */,
+				076B27B81C5A95C700F0FCEC /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		076B27B81C5A95C700F0FCEC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				076B27B71C5A95C700F0FCEC /* QuantLib_2.0 */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		076B27B91C5A95C700F0FCEC /* QuantLib_2.0 */ = {
+			isa = PBXGroup;
+			children = (
+				076B27C91C5AB30900F0FCEC /* BS */,
+				076B27C71C5AB1EA00F0FCEC /* option_TreePricers.h */,
+				076B27C31C5A97FB00F0FCEC /* option_TreePricers */,
+				076B27C81C5AB27600F0FCEC /* optionInfo.h */,
+				076B27C11C5A961100F0FCEC /* optionInfo */,
+				076B27BA1C5A95C700F0FCEC /* test.cpp */,
+			);
+			path = QuantLib_2.0;
+			sourceTree = "<group>";
+		};
+		076B27C11C5A961100F0FCEC /* optionInfo */ = {
+			isa = PBXGroup;
+			children = (
+				076B27C21C5A962700F0FCEC /* option.h */,
+			);
+			name = optionInfo;
+			sourceTree = "<group>";
+		};
+		076B27C31C5A97FB00F0FCEC /* option_TreePricers */ = {
+			isa = PBXGroup;
+			children = (
+				076B27C41C5A993F00F0FCEC /* BinomialTree.cpp */,
+				076B27C51C5A993F00F0FCEC /* BinomialTree.hpp */,
+				07ED5DA21C67EE05000A7BE6 /* BinomialBSTree.cpp */,
+				07ED5DA31C67EE05000A7BE6 /* BinomialBSTree.hpp */,
+				07ED5DA51C67FD0F000A7BE6 /* AvgBinomialTree.cpp */,
+				07ED5DA61C67FD0F000A7BE6 /* AvgBinomialTree.hpp */,
+			);
+			name = option_TreePricers;
+			sourceTree = "<group>";
+		};
+		076B27C91C5AB30900F0FCEC /* BS */ = {
+			isa = PBXGroup;
+			children = (
+				076B27CB1C5AB32100F0FCEC /* BS.hpp */,
+			);
+			name = BS;
+			path = ..;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		076B27B61C5A95C700F0FCEC /* QuantLib_2.0 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 076B27BE1C5A95C700F0FCEC /* Build configuration list for PBXNativeTarget "QuantLib_2.0" */;
+			buildPhases = (
+				076B27B31C5A95C700F0FCEC /* Sources */,
+				076B27B41C5A95C700F0FCEC /* Frameworks */,
+				076B27B51C5A95C700F0FCEC /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = QuantLib_2.0;
+			productName = QuantLib_2.0;
+			productReference = 076B27B71C5A95C700F0FCEC /* QuantLib_2.0 */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		076B27AF1C5A95C700F0FCEC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = EricZ;
+				TargetAttributes = {
+					076B27B61C5A95C700F0FCEC = {
+						CreatedOnToolsVersion = 7.2;
+					};
+				};
+			};
+			buildConfigurationList = 076B27B21C5A95C700F0FCEC /* Build configuration list for PBXProject "QuantLib_2.0" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 076B27AE1C5A95C700F0FCEC;
+			productRefGroup = 076B27B81C5A95C700F0FCEC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				076B27B61C5A95C700F0FCEC /* QuantLib_2.0 */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		076B27B31C5A95C700F0FCEC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				076B27C61C5A993F00F0FCEC /* BinomialTree.cpp in Sources */,
+				07ED5DA71C67FD0F000A7BE6 /* AvgBinomialTree.cpp in Sources */,
+				07ED5DA41C67EE05000A7BE6 /* BinomialBSTree.cpp in Sources */,
+				076B27BB1C5A95C700F0FCEC /* test.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		076B27BC1C5A95C700F0FCEC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		076B27BD1C5A95C700F0FCEC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		076B27BF1C5A95C700F0FCEC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				HEADER_SEARCH_PATHS = /usr/local/Cellar/boost/1.58.0/include;
+				LIBRARY_SEARCH_PATHS = /usr/local/Cellar/boost/1.58.0/lib;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		076B27C01C5A95C700F0FCEC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				HEADER_SEARCH_PATHS = /usr/local/Cellar/boost/1.58.0/include;
+				LIBRARY_SEARCH_PATHS = /usr/local/Cellar/boost/1.58.0/lib;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		076B27B21C5A95C700F0FCEC /* Build configuration list for PBXProject "QuantLib_2.0" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				076B27BC1C5A95C700F0FCEC /* Debug */,
+				076B27BD1C5A95C700F0FCEC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		076B27BE1C5A95C700F0FCEC /* Build configuration list for PBXNativeTarget "QuantLib_2.0" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				076B27BF1C5A95C700F0FCEC /* Debug */,
+				076B27C01C5A95C700F0FCEC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 076B27AF1C5A95C700F0FCEC /* Project object */;
+}
