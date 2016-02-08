@@ -9,6 +9,8 @@
 #include <iostream>
 #include "option_TreePricers.h"
 #include "BS.hpp"
+#include "option_Simulation.h"
+#include <boost/random.hpp>
 
 int main(int argc, const char * argv[]) {
     
@@ -18,9 +20,11 @@ int main(int argc, const char * argv[]) {
     BS bs_formula(opt);
     
     BinomialTree bio_tree(opt, 1e4);
+    std::cout<< bs_formula.price()<< std::endl<<"******"<<std::endl<<bio_tree.valuation()<< std::endl;
     
-    std::cout<< bs_formula.price()<< std::endl<<"******"<<std::endl<<bio_tree.valuation();
+    SimuEuro simu(opt, 1e7);
     
+    std::cout<< simu.valuation()<<std::endl<<simu.stdiv()<<std::endl;
     
     return 0;
 }

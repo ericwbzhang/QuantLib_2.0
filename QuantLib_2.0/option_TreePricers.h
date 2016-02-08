@@ -15,5 +15,4 @@
 #include "BBSRTree.hpp"
 
 
-
 #endif /* option_TreePricers_h */

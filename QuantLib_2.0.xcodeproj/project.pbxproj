@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		072E22911C690F3D00A3B74A /* SimuEuro.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 072E228F1C690F3D00A3B74A /* SimuEuro.cpp */; };
 		076B27BB1C5A95C700F0FCEC /* test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 076B27BA1C5A95C700F0FCEC /* test.cpp */; };
 		076B27C61C5A993F00F0FCEC /* BinomialTree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 076B27C41C5A993F00F0FCEC /* BinomialTree.cpp */; };
 		07ED5DA41C67EE05000A7BE6 /* BinomialBSTree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07ED5DA21C67EE05000A7BE6 /* BinomialBSTree.cpp */; };
@@ -27,6 +28,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		072E228E1C690F0000A3B74A /* option_Simulation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = option_Simulation.h; sourceTree = "<group>"; };
+		072E228F1C690F3D00A3B74A /* SimuEuro.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SimuEuro.cpp; sourceTree = "<group>"; };
+		072E22901C690F3D00A3B74A /* SimuEuro.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SimuEuro.hpp; sourceTree = "<group>"; };
 		076B27B71C5A95C700F0FCEC /* QuantLib_2.0 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = QuantLib_2.0; sourceTree = BUILT_PRODUCTS_DIR; };
 		076B27BA1C5A95C700F0FCEC /* test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = test.cpp; sourceTree = "<group>"; };
 		076B27C21C5A962700F0FCEC /* option.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = option.h; sourceTree = "<group>"; };
@@ -54,6 +58,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		072E228D1C690EAE00A3B74A /* option_Simulatino */ = {
+			isa = PBXGroup;
+			children = (
+				072E228F1C690F3D00A3B74A /* SimuEuro.cpp */,
+				072E22901C690F3D00A3B74A /* SimuEuro.hpp */,
+			);
+			name = option_Simulatino;
+			sourceTree = "<group>";
+		};
 		076B27AE1C5A95C700F0FCEC = {
 			isa = PBXGroup;
 			children = (
@@ -76,6 +89,8 @@
 				076B27C91C5AB30900F0FCEC /* BS */,
 				076B27C71C5AB1EA00F0FCEC /* option_TreePricers.h */,
 				076B27C31C5A97FB00F0FCEC /* option_TreePricers */,
+				072E228E1C690F0000A3B74A /* option_Simulation.h */,
+				072E228D1C690EAE00A3B74A /* option_Simulatino */,
 				076B27C81C5AB27600F0FCEC /* optionInfo.h */,
 				076B27C11C5A961100F0FCEC /* optionInfo */,
 				076B27BA1C5A95C700F0FCEC /* test.cpp */,
@@ -173,6 +188,7 @@
 			files = (
 				07ED5DAA1C680DEC000A7BE6 /* BBSRTree.cpp in Sources */,
 				076B27C61C5A993F00F0FCEC /* BinomialTree.cpp in Sources */,
+				072E22911C690F3D00A3B74A /* SimuEuro.cpp in Sources */,
 				07ED5DA71C67FD0F000A7BE6 /* AvgBinomialTree.cpp in Sources */,
 				07ED5DA41C67EE05000A7BE6 /* BinomialBSTree.cpp in Sources */,
 				076B27BB1C5A95C700F0FCEC /* test.cpp in Sources */,

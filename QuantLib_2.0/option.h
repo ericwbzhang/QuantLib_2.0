@@ -20,4 +20,14 @@ struct option{
     
 };
 
+struct barrier_option : public option{
+    // barrier_option derives from option class, and contains the option parameters including barrier.
+    
+    double barrier;
+    
+    barrier_option(){};
+    barrier_option(double stock_price, double strike, double expiration, double rf, double div, double volatility, int CorP, int Euro_Amer, double bar):option(stock_price, strike, expiration, rf, div, volatility, CorP, Euro_Amer), barrier(bar){};
+
+};
+
 #endif /* option_h */
