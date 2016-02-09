@@ -21,7 +21,10 @@ protected:
     boost::numeric::ublas::vector<double> asset_price;
     boost::numeric::ublas::vector<double> option_value;
     long double mean;
-    long double variance;
+    long double stdiv;
+    // mean is the simulation avg
+    // stdiv is the simulation avg's stdiv
+    
     
 public:
     SimuEuro(){};
@@ -32,10 +35,10 @@ public:
     // RN is a std vector containing the std normal random number to be used in the simulation. Its length must be no smaller than path.
     virtual ~SimuEuro(){};
     
-    boost::numeric::ublas::vector<double > assetPriceDist(){return asset_price;}
+    boost::numeric::ublas::vector<double> assetPriceDist(){return asset_price;}
     boost::numeric::ublas::vector<double>  optionValueDist() {return option_value;};
     double valuation() {return mean;};
-    double stdiv() {return sqrt(variance); };
+    double valuation_stdiv() {return stdiv; };
     
 };
 

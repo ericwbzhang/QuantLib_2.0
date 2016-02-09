@@ -10,6 +10,7 @@
 		072E22911C690F3D00A3B74A /* SimuEuro.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 072E228F1C690F3D00A3B74A /* SimuEuro.cpp */; };
 		076B27BB1C5A95C700F0FCEC /* test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 076B27BA1C5A95C700F0FCEC /* test.cpp */; };
 		076B27C61C5A993F00F0FCEC /* BinomialTree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 076B27C41C5A993F00F0FCEC /* BinomialTree.cpp */; };
+		07773C991C69650B00AA10AC /* SimuEuroBarrier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07773C971C69650B00AA10AC /* SimuEuroBarrier.cpp */; };
 		07ED5DA41C67EE05000A7BE6 /* BinomialBSTree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07ED5DA21C67EE05000A7BE6 /* BinomialBSTree.cpp */; };
 		07ED5DA71C67FD0F000A7BE6 /* AvgBinomialTree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07ED5DA51C67FD0F000A7BE6 /* AvgBinomialTree.cpp */; };
 		07ED5DAA1C680DEC000A7BE6 /* BBSRTree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07ED5DA81C680DEC000A7BE6 /* BBSRTree.cpp */; };
@@ -39,6 +40,10 @@
 		076B27C71C5AB1EA00F0FCEC /* option_TreePricers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = option_TreePricers.h; sourceTree = "<group>"; };
 		076B27C81C5AB27600F0FCEC /* optionInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = optionInfo.h; sourceTree = "<group>"; };
 		076B27CB1C5AB32100F0FCEC /* BS.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = BS.hpp; path = QuantLib_2.0/BS.hpp; sourceTree = "<group>"; };
+		07773C971C69650B00AA10AC /* SimuEuroBarrier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SimuEuroBarrier.cpp; sourceTree = "<group>"; };
+		07773C981C69650B00AA10AC /* SimuEuroBarrier.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SimuEuroBarrier.hpp; sourceTree = "<group>"; };
+		07CE9B9B1C6A46C900965CA9 /* realValueFunctor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = realValueFunctor.h; sourceTree = "<group>"; };
+		07CE9B9C1C6A488B00965CA9 /* miscellaneous.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = miscellaneous.h; sourceTree = "<group>"; };
 		07ED5DA21C67EE05000A7BE6 /* BinomialBSTree.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BinomialBSTree.cpp; sourceTree = "<group>"; };
 		07ED5DA31C67EE05000A7BE6 /* BinomialBSTree.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BinomialBSTree.hpp; sourceTree = "<group>"; };
 		07ED5DA51C67FD0F000A7BE6 /* AvgBinomialTree.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AvgBinomialTree.cpp; sourceTree = "<group>"; };
@@ -63,6 +68,8 @@
 			children = (
 				072E228F1C690F3D00A3B74A /* SimuEuro.cpp */,
 				072E22901C690F3D00A3B74A /* SimuEuro.hpp */,
+				07773C971C69650B00AA10AC /* SimuEuroBarrier.cpp */,
+				07773C981C69650B00AA10AC /* SimuEuroBarrier.hpp */,
 			);
 			name = option_Simulatino;
 			sourceTree = "<group>";
@@ -86,6 +93,8 @@
 		076B27B91C5A95C700F0FCEC /* QuantLib_2.0 */ = {
 			isa = PBXGroup;
 			children = (
+				07CE9B9C1C6A488B00965CA9 /* miscellaneous.h */,
+				07CE9B9A1C6A444800965CA9 /* miscellaneous */,
 				076B27C91C5AB30900F0FCEC /* BS */,
 				076B27C71C5AB1EA00F0FCEC /* option_TreePricers.h */,
 				076B27C31C5A97FB00F0FCEC /* option_TreePricers */,
@@ -128,6 +137,14 @@
 			);
 			name = BS;
 			path = ..;
+			sourceTree = "<group>";
+		};
+		07CE9B9A1C6A444800965CA9 /* miscellaneous */ = {
+			isa = PBXGroup;
+			children = (
+				07CE9B9B1C6A46C900965CA9 /* realValueFunctor.h */,
+			);
+			name = miscellaneous;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -189,6 +206,7 @@
 				07ED5DAA1C680DEC000A7BE6 /* BBSRTree.cpp in Sources */,
 				076B27C61C5A993F00F0FCEC /* BinomialTree.cpp in Sources */,
 				072E22911C690F3D00A3B74A /* SimuEuro.cpp in Sources */,
+				07773C991C69650B00AA10AC /* SimuEuroBarrier.cpp in Sources */,
 				07ED5DA71C67FD0F000A7BE6 /* AvgBinomialTree.cpp in Sources */,
 				07ED5DA41C67EE05000A7BE6 /* BinomialBSTree.cpp in Sources */,
 				076B27BB1C5A95C700F0FCEC /* test.cpp in Sources */,
