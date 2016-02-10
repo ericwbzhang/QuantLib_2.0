@@ -10,7 +10,7 @@
 #define SimuEuroBarrier_hpp
 
 #include <stdio.h>
-#include "option.h"
+#include "options.hpp"
 #include <boost/numeric/ublas/matrix.hpp>
 #include <boost/numeric/ublas/vector.hpp>
 

@@ -10,20 +10,19 @@
 #define realValueFunctor_h
 
 #include <boost/numeric/ublas/vector.hpp> 
-
+#include <stdio.h>
 
 class realValueFunctor{
     // realValueFunctor is a virtual class. It sets the interface for general function from R^p to R.
-protected:
-    long p; //the dimension of space the function is working on.
+
 public:
     realValueFunctor(){};
-    realValueFunctor(long dim): p(dim){};
     virtual ~realValueFunctor(){};
     
     virtual double operator() (std::vector<double> args) =0;
     virtual double operator() (boost::numeric::ublas::vector<double> args )=0;
-    virtual long support_dim() {return p; };
+    
+    virtual realValueFunctor* clone()  =0;
 };
 
 

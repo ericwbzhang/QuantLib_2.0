@@ -10,7 +10,7 @@
 #define SimuEuro_hpp
 
 #include <stdio.h>
-#include "option.h"
+#include "options.hpp"
 #include <boost/numeric/ublas/vector.hpp>
 
 class SimuEuro{

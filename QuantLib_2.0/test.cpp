@@ -12,13 +12,69 @@
 #include "BS.hpp"
 #include "option_Simulation.h"
 #include <boost/random.hpp>
+#include "algebra.h"
 
-int main(int argc, const char * argv[]) {
+class prod_payoff: public realValueFunctor{
+protected:
+    double K;
     
+public:
+    prod_payoff(){};
+    prod_payoff(double strike): K(strike){};
+    
+    virtual double operator()(std::vector<double> args){
+        double res=1;
+        for (std::vector<double>::iterator it= args.begin(); it!= args.end(); it++){
+            res*= *it;
+        }
+        
+        return fmax(0.0, res-K);
+    };
+    
+    virtual double operator()(boost::numeric::ublas::vector<double> args){
+        long n=args.size();
+        std::vector<double> vec(n);
+        for (long i=0; i<n; i++) vec[i]= args(i);
+        
+        return this-> operator()(vec);
+    };
+    
+    virtual realValueFunctor* clone(){
+        return new prod_payoff(*this);
+    };
+    
+};
 
-    option opt(1,1, 1, 0.01, 0.01, 0.2, 1, 1); // S=K=1, T=1, r=q=0.01, sigma= 0.2, Call=1, Euro=1
-    barrier_option b_opt(opt, 1.1, 1);
 
+int main(){
+    asset a1(1,0.03, 0.01, 0.1);
+    asset a2= a1;
+    asset a3= a1;
+    
+    boost::numeric::ublas::matrix<double> Omega(3,3);
+    
+    Omega(0,0)= 0.01; Omega(0,1)= 0.01*0.6; Omega(0,2)= 0.01*-0.3;
+    Omega(1,1)= 0.01; Omega(1,2)=0.01*0.5;
+    Omega(2,2)= 0.01;
+    
+    for (long i=0; i<3; i++)
+        for (int j=0; j<i; j++)
+            Omega(i,j)= Omega(j,i);
+    
+    
+    prod_payoff payoff(1.3);
+    
+    std::vector<asset> asset_vec;
+    asset_vec.push_back(a1); asset_vec.push_back(a2); asset_vec.push_back(a3);
+    
+    nonPathDependentBasket_option opt(asset_vec, 1, &payoff, Omega);
+    
+    SimuNonPathDepEuroBasket simu_EuroBasket(opt, 1e5);
+    
+    std::cout<< simu_EuroBasket.valuation()<<std::endl<<simu_EuroBasket.valuation_stdiv()<<std::endl;
+    
     return 0;
-}
- 
+};
+
+
+

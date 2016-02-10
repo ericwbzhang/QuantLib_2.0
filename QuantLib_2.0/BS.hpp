@@ -10,7 +10,7 @@
 #define BS_hpp
 
 #include <stdio.h>
-#include "option.h"
+#include "options.hpp"
 #include <boost/math/distributions/normal.hpp>
 
 struct BS{

@@ -11,7 +11,7 @@
 
 #include "SimuEuro.hpp"
 #include "SimuEuroBarrier.hpp"
-
+#include "SimuNonPathDepEuroBasket.hpp"
 
 /*
  ********* test ********
