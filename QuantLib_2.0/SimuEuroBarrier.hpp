@@ -11,8 +11,7 @@
 
 #include <stdio.h>
 #include "options.hpp"
-#include <boost/numeric/ublas/matrix.hpp>
-#include <boost/numeric/ublas/vector.hpp>
+#include <Eigen/Dense>
 
 class SimuEuroBarrier{
 // Euro Barrier option price strongly depends on the underlying asset price path. Once the barrier gets hit, the option value stays at 0.
@@ -21,8 +20,8 @@ class SimuEuroBarrier{
 protected:
     long N,M;
     barrier_option opt;
-    boost::numeric::ublas::matrix<double> asset_path;
-    boost::numeric::ublas::vector<double> option_value;
+    Eigen::MatrixXd asset_path;
+    Eigen::VectorXd option_value;
     int simuEffective;
     // Note some barrier option is not real barrier option-- they either have value 0 for sure, or can be reduced to vanilla Euro options.
     // simuEffective = 1 if we do need to run the simulation to price the barrier option; -1 if we really dont need to run any simulation and know that the value is 0 for sure; 0 if we can reduce the barrier option to vanilla Euro option and use simple simulation to solve it.
@@ -36,15 +35,15 @@ protected:
     
 public:
     SimuEuroBarrier(){};
-    SimuEuroBarrier(barrier_option o,long path, long time_steps,  unsigned int seed= int(time(0)));
+    SimuEuroBarrier(const barrier_option & o,long path, long time_steps,  unsigned int seed= int(time(0)));
     // With no argument specifying the random number generator to be used, we use boost::mt19937 as random number engine with given seed which has default value transformed from time(0)
-    SimuEuroBarrier(barrier_option o, long path, long time_steps, std::vector<double> RN);
+    SimuEuroBarrier(const barrier_option & o, long path, long time_steps, const std::vector<double> & RN);
     // RN is a std vector containing the std normal random number to be used in the simulation. Its length must be no smaller than N*M
     
     virtual ~SimuEuroBarrier(){};
     
-    boost::numeric::ublas::matrix<double> assetPricePath() {return asset_path;}
-    boost::numeric::ublas::vector<double> optionValueDist(){return option_value;}
+    Eigen::MatrixXd assetPricePath() {return asset_path;}
+    Eigen::VectorXd optionValueDist(){return option_value;}
     double effectRatio() {return count_effective/double(N);};
     // effectRatio returns count_effective/N, the fraction of paths which are not knocked out(for knock out option) or are knocked in (for knock in option). It returns NAN if the option does not need simulation pricers.
     

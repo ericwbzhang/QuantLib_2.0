@@ -8,7 +8,7 @@
 
 #include "BBSRTree.hpp"
 
-BBSRTree::BBSRTree(option o, long steps) {
+BBSRTree::BBSRTree(const option & o, long steps) {
     bt1= new BinomialBSTree(o, steps);
     bt2= new BinomialBSTree(o, long(steps/2));
     

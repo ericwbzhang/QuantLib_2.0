@@ -11,13 +11,14 @@
 
 #include <stdio.h>
 #include "options.hpp"
-#include <boost/numeric/ublas/vector.hpp>
+#include <Eigen/Dense>
+
 
 class BinomialTree{
 protected:
     long N; // number of time steps
     option opt; // the option to be priced
-    boost::numeric::ublas::vector<double> value; // the boost vector to capture the option value evolution
+    Eigen::VectorXd value; // the boost vector to capture the option value evolution
     double t, p, q, u, d, disc;
     // t= length of each time step;
     // p= the risk neutral prob of up; q=1-p, the risk neutral prob of down
@@ -26,7 +27,7 @@ protected:
 
 public:
     BinomialTree(){};
-    BinomialTree( option o, long steps);
+    BinomialTree( const option &o, long steps);
     
     virtual ~BinomialTree(){};
     

@@ -21,7 +21,7 @@ protected:
     
 public:
     AvgBinomialTree(){};
-    AvgBinomialTree(option o, long steps, int tree_type);
+    AvgBinomialTree(const option & o, long steps, int tree_type);
     // tree_type=0 if we want average BinomialTree;
     // tree_type=1 if we want average BinomialBSTree;
     

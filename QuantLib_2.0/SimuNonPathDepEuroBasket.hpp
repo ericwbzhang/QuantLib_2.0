@@ -18,24 +18,24 @@ class SimuNonPathDepEuroBasket {
 protected:
     long N;
     nonPathDependentBasket_option opt;
-    boost::numeric::ublas::matrix<double> asset_price;
+    Eigen::MatrixXd asset_price;
     // asset_price stores the asset prices at expiration. It has dimension N*p, where p= opt.count_assets;
-    boost::numeric::ublas::vector<double> option_value;
+    Eigen::VectorXd option_value;
     // option_value has dimension N. It stores the option value at each of the N paths.
     long double mean;
     long double stdiv;
     
 public:
     SimuNonPathDepEuroBasket(){};
-    SimuNonPathDepEuroBasket(nonPathDependentBasket_option o, long paths, unsigned int seed= int(time(0)));
+    SimuNonPathDepEuroBasket(const nonPathDependentBasket_option & o, long paths, unsigned int seed= int(time(0)));
     // With no argument specifying the random number generator to be used, we use boost::mt19937 as random number engine with given seed which has default value transformed from time(0)
-    SimuNonPathDepEuroBasket(nonPathDependentBasket_option o, long paths, boost::numeric::ublas::matrix<double> RN);
+    SimuNonPathDepEuroBasket(const nonPathDependentBasket_option & o, long paths, const  Eigen::MatrixXd & RN);
     // RN is a boost matrix containing the CORRELATED std normal random number to be used in the simulation. It must have dimension N*p, p= opt.count_assets;
     
     virtual ~SimuNonPathDepEuroBasket(){};
     
-    boost::numeric::ublas::matrix<double> assetPriceDist(){return asset_price;};
-    boost::numeric::ublas::vector<double> optionValueDist(){return option_value;};
+    Eigen::MatrixXd assetPriceDist(){return asset_price;};
+    Eigen::VectorXd optionValueDist(){return option_value;};
     
     double valuation(){return mean;};
     double valuation_stdiv(){return stdiv;};

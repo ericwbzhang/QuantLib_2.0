@@ -8,7 +8,7 @@
 
 #include "BinomialBSTree.hpp"
 
-BinomialBSTree:: BinomialBSTree(option o, long steps){
+BinomialBSTree:: BinomialBSTree(const option &o, long steps){
     N= steps;
     opt= o;
     
@@ -20,7 +20,7 @@ BinomialBSTree:: BinomialBSTree(option o, long steps){
     disc= exp(-opt.r*t);
     
     value.resize(N);
-    value.clear();
+    value.setZero();
     
     // Evolve the value vector
     

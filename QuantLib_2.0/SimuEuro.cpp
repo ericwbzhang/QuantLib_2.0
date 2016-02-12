@@ -9,12 +9,12 @@
 #include "SimuEuro.hpp"
 #include <boost/random.hpp>
 
-SimuEuro::SimuEuro(option o, long path, unsigned int seed) {
+SimuEuro::SimuEuro(const option & o, long path, unsigned int seed) {
 
     opt=o;
     N= path;
     asset_price.resize(N);
-    asset_price.clear();
+    asset_price.setZero();
     option_value= asset_price;
     
     boost::mt19937 eng(seed);
@@ -28,17 +28,17 @@ SimuEuro::SimuEuro(option o, long path, unsigned int seed) {
         else option_value(i)= fmax(-asset_price(i)+opt.K, 0.0);
     }
     
-    mean= boost::numeric::ublas::sum(option_value)/ option_value.size() * exp(-opt.T*opt.r);
-    stdiv= pow(boost::numeric::ublas::norm_2(option_value), 2.0)/ option_value.size()* exp(-opt.r*opt.T *2);
+    mean= option_value.sum()/ option_value.size() * exp(-opt.T*opt.r);
+    stdiv= option_value.squaredNorm()/ option_value.size()* exp(-opt.r*opt.T *2);
     stdiv= stdiv- pow(mean,2.0);
     stdiv= sqrt(stdiv/ N);
 }
 
-SimuEuro::SimuEuro(option o, long path, std::vector<double> RN){
+SimuEuro::SimuEuro(const option & o, long path, const std::vector<double> & RN){
     opt=o;
     N= path;
     asset_price.resize(N);
-    asset_price.clear();
+    asset_price.setZero();
     option_value= asset_price;
     
     for (long i=0; i< N; i++) {
@@ -48,8 +48,8 @@ SimuEuro::SimuEuro(option o, long path, std::vector<double> RN){
         else option_value(i)= fmax(-asset_price(i)+opt.K, 0.0);
     }
     
-    mean= boost::numeric::ublas::sum(option_value)/ option_value.size() * exp(-opt.T*opt.r);
-    stdiv= pow(boost::numeric::ublas::norm_2(option_value), 2.0)/ option_value.size()* exp(-opt.r*opt.T *2);
+    mean= option_value.sum()/ option_value.size() * exp(-opt.T*opt.r);
+    stdiv= option_value.squaredNorm()/ option_value.size()* exp(-opt.r*opt.T *2);
     stdiv= stdiv- pow(mean,2.0);
     stdiv= sqrt(stdiv/ N);
     

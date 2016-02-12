@@ -8,7 +8,7 @@
 
 #include "AvgBinomialTree.hpp"
 
-AvgBinomialTree::AvgBinomialTree(option o, long steps, int tree_type){
+AvgBinomialTree::AvgBinomialTree(const option & o, long steps, int tree_type){
     if (tree_type==0) {
         // BinomialTree
         bt1= new BinomialTree(o, steps);

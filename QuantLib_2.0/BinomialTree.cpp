@@ -8,7 +8,7 @@
 
 #include "BinomialTree.hpp"
 
-BinomialTree::BinomialTree(option o, long steps){
+BinomialTree::BinomialTree(const option & o, long steps){
     opt=o;
     N= steps;
     
@@ -20,7 +20,7 @@ BinomialTree::BinomialTree(option o, long steps){
     disc= exp(-opt.r*t);
     
     value.resize(N+1);
-    value.clear();
+    value.setZero();
     
     // Evolve the value vector
     if (opt.Euro==1){

@@ -29,7 +29,7 @@ protected:
     
 public:
     BinomialBSTree(){};
-    BinomialBSTree(option o, long steps ) ;
+    BinomialBSTree(const option &o, long steps ) ;
     
     virtual ~BinomialBSTree(){};
     

@@ -22,16 +22,16 @@ public:
     prod_payoff(){};
     prod_payoff(double strike): K(strike){};
     
-    virtual double operator()(std::vector<double> args){
+    virtual double operator()(const std::vector<double>&  args){
         double res=1;
-        for (std::vector<double>::iterator it= args.begin(); it!= args.end(); it++){
+        for (std::vector<const double>::iterator it= args.begin(); it!= args.end(); it++){
             res*= *it;
         }
         
         return fmax(0.0, res-K);
     };
     
-    virtual double operator()(boost::numeric::ublas::vector<double> args){
+    virtual double operator()(const Eigen::VectorXd & args){
         long n=args.size();
         std::vector<double> vec(n);
         for (long i=0; i<n; i++) vec[i]= args(i);
@@ -51,7 +51,7 @@ int main(){
     asset a2= a1;
     asset a3= a1;
     
-    boost::numeric::ublas::matrix<double> Omega(3,3);
+    Eigen::MatrixXd Omega(3,3);
     
     Omega(0,0)= 0.01; Omega(0,1)= 0.01*0.6; Omega(0,2)= 0.01*-0.3;
     Omega(1,1)= 0.01; Omega(1,2)=0.01*0.5;
@@ -62,7 +62,7 @@ int main(){
             Omega(i,j)= Omega(j,i);
     
     
-    prod_payoff payoff(1.3);
+    prod_payoff payoff(1.2);
     
     std::vector<asset> asset_vec;
     asset_vec.push_back(a1); asset_vec.push_back(a2); asset_vec.push_back(a3);
@@ -73,8 +73,14 @@ int main(){
     
     std::cout<< simu_EuroBasket.valuation()<<std::endl<<simu_EuroBasket.valuation_stdiv()<<std::endl;
     
+
+    
+    
+    
+    
+    
     return 0;
+    
+    
+    
 };
-
-
-

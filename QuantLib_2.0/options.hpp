@@ -13,8 +13,7 @@
 #include <math.h>
 #include <vector>
 #include "realValueFunctor.h"
-#include <boost/numeric/ublas/matrix.hpp>
-
+#include <Eigen/Dense>
 
 struct option{
     double S, K, T, r, q, sigma;
@@ -39,7 +38,7 @@ struct barrier_option : public option{
     barrier_option(){};
     barrier_option(double stock_price, double strike, double expiration, double rf, double div, double volatility, int CorP, int Euro_Amer, double bar, int k_out):option(stock_price, strike, expiration, rf, div, volatility, CorP, Euro_Amer), barrier(bar), knock_out(k_out){};
     
-    barrier_option(option o, double bar, int k_out): option(o), barrier(bar), knock_out(k_out){};
+    barrier_option(const option & o, double bar, int k_out): option(o), barrier(bar), knock_out(k_out){};
     
     virtual ~barrier_option(){};
     
@@ -53,7 +52,7 @@ struct asset{
     
     asset(){};
     asset(double stock_price, double rf, double div, double volatility) : S(stock_price), r(rf), q(div), sigma(volatility){};
-    asset(option o) : S(o.S), r(o.r), q(o.q), sigma(o.sigma){};
+    asset(const option & o) : S(o.S), r(o.r), q(o.q), sigma(o.sigma){};
     
     virtual ~asset(){};
     
@@ -68,18 +67,17 @@ struct nonPathDependentBasket_option{
     std::vector<asset> asset_vec;
     long count_assets;
     double T;
-    realValueFunctor *f;
-    boost::numeric::ublas::matrix<double> cov;
-    
+    std::shared_ptr<realValueFunctor> f;
+    Eigen::MatrixXd cov;
     
     
     nonPathDependentBasket_option(){};
-    nonPathDependentBasket_option(std::vector<asset> vec, double expiration, realValueFunctor * payoff, boost::numeric::ublas::matrix<double> mtx): asset_vec(vec), T(expiration), cov(mtx), count_assets(vec.size()) , f(payoff->clone()){};
-    nonPathDependentBasket_option( const nonPathDependentBasket_option & o): asset_vec(o.asset_vec), count_assets(o.count_assets), T(o.T), cov(o.cov), f((o.f)->clone()){
+    nonPathDependentBasket_option(const std::vector<asset> & vec, double expiration, realValueFunctor * payoff, const Eigen::MatrixXd & mtx): asset_vec(vec), T(expiration), cov(mtx), count_assets(vec.size()), f(std::shared_ptr<realValueFunctor>(payoff->clone())){};
+    nonPathDependentBasket_option( const nonPathDependentBasket_option & o): asset_vec(o.asset_vec), count_assets(o.count_assets), T(o.T), cov(o.cov), f(std::shared_ptr<realValueFunctor>(o.f->clone())){
         // copy constructor. we want a deep copy, ie, we also need to clone *f
     };
 
-    virtual ~nonPathDependentBasket_option (){delete f; };
+    virtual ~nonPathDependentBasket_option () {};
     
     nonPathDependentBasket_option& operator =( const nonPathDependentBasket_option & o) {
         
@@ -88,8 +86,7 @@ struct nonPathDependentBasket_option{
         T=o.T;
         cov=o.cov;
         
-        if(f) {delete f;}
-        f= o.f->clone();
+        f= std::shared_ptr<realValueFunctor> (o.f->clone());
         
         return *this;
     };
@@ -103,11 +100,11 @@ struct nonPathDependentBasket_option{
         return p;
     };
     
-    boost::numeric::ublas::matrix<double> corr(){
+    Eigen::MatrixXd corr(){
     
-        long nrow= cov.size1();
-        long ncol= cov.size2();
-        boost::numeric::ublas::matrix<double> Rho(nrow, ncol); Rho.clear();
+        long nrow= cov.rows();
+        long ncol= cov.cols();
+        Eigen::MatrixXd Rho(nrow, ncol); Rho.setZero();
      
         
         for (long i= 0; i< nrow; i++)

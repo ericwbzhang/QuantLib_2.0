@@ -9,11 +9,10 @@
 #include "SimuEuroBarrier.hpp"
 #include <boost/random.hpp>
 #include "SimuEuro.hpp"
-#include <boost/numeric/ublas/matrix_proxy.hpp>
 
 
 
-SimuEuroBarrier::SimuEuroBarrier(barrier_option o, long paths, long time_steps, std::vector<double> RN){
+SimuEuroBarrier::SimuEuroBarrier(const barrier_option & o, long paths, long time_steps, const std::vector<double> &RN){
     
     N= paths;
     M= time_steps;
@@ -44,14 +43,14 @@ SimuEuroBarrier::SimuEuroBarrier(barrier_option o, long paths, long time_steps, 
         stdiv= simu_Euro.valuation_stdiv();
         option_value= simu_Euro.optionValueDist();
         asset_path.resize(N, 1);
-        boost::numeric::ublas::column(asset_path, 0)= simu_Euro.assetPriceDist();
+        asset_path.col(0)= simu_Euro.assetPriceDist();
     } else {
         asset_path.resize(N, M);
-        asset_path.clear();
+        asset_path.setZero();
         option_value.resize(N);
-        option_value.clear();
+        option_value.setZero();
         
-        std::vector<double>::iterator it= RN.begin();
+        std::vector<const double>::iterator it= RN.begin();
         double t= opt.T/ M;
         double c= exp((opt.r- opt.q)*t-.5*opt.sigma*opt.sigma*t);
         std::vector<bool> flag(N);// initialized as false, and if barrier gets hit in path j, flag[j]= true
@@ -84,8 +83,9 @@ SimuEuroBarrier::SimuEuroBarrier(barrier_option o, long paths, long time_steps, 
             }
         }
         
-        mean= boost::numeric::ublas::sum(option_value)/ option_value.size() * exp(-opt.T*opt.r);
-        stdiv= pow(boost::numeric::ublas::norm_2(option_value), 2.0)/ option_value.size()* exp(-opt.r*opt.T *2);
+        
+        mean= option_value.sum()/ option_value.size() * exp(-opt.T*opt.r);
+        stdiv= option_value.squaredNorm()/ option_value.size()* exp(-opt.r*opt.T *2);
         stdiv= stdiv- pow(mean,2.0);
         stdiv= sqrt(stdiv/ N);
     }
@@ -93,7 +93,7 @@ SimuEuroBarrier::SimuEuroBarrier(barrier_option o, long paths, long time_steps, 
 }
 
 
-SimuEuroBarrier::SimuEuroBarrier(barrier_option o, long paths, long time_steps, unsigned int seed){
+SimuEuroBarrier::SimuEuroBarrier(const barrier_option & o, long paths, long time_steps, unsigned int seed){
     
     N= paths;
     M= time_steps;
@@ -124,12 +124,12 @@ SimuEuroBarrier::SimuEuroBarrier(barrier_option o, long paths, long time_steps, 
         stdiv= simu_Euro.valuation_stdiv();
         option_value= simu_Euro.optionValueDist();
         asset_path.resize(N, 1);
-        boost::numeric::ublas::column(asset_path, 0)= simu_Euro.assetPriceDist();
+        asset_path.col(0)= simu_Euro.assetPriceDist();
     } else {
         asset_path.resize(N, M);
-        asset_path.clear();
+        asset_path.setZero();
         option_value.resize(N);
-        option_value.clear();
+        option_value.setZero();
         
         boost::mt19937 eng(seed);
         boost::normal_distribution<double> normal(0.0, 1.0);
@@ -167,8 +167,8 @@ SimuEuroBarrier::SimuEuroBarrier(barrier_option o, long paths, long time_steps, 
             }
         }
         
-        mean= boost::numeric::ublas::sum(option_value)/ option_value.size() * exp(-opt.T*opt.r);
-        stdiv= pow(boost::numeric::ublas::norm_2(option_value), 2.0)/ option_value.size()* exp(-opt.r*opt.T *2);
+        mean= option_value.sum()/ option_value.size() * exp(-opt.T*opt.r);
+        stdiv= option_value.squaredNorm()/ option_value.size()* exp(-opt.r*opt.T *2);
         stdiv= stdiv- pow(mean,2.0);
         stdiv= sqrt(stdiv/ N);
     }

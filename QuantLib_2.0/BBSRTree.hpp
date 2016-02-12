@@ -21,7 +21,7 @@ protected:
     
 public:
     BBSRTree(){};
-    BBSRTree(option o, long steps);
+    BBSRTree(const option & o, long steps);
     virtual ~BBSRTree(){delete bt1; delete bt2;} ;
     
     double valuation();

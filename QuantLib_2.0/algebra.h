@@ -9,6 +9,9 @@
 #ifndef algebra_h
 #define algebra_h
 
-#include "cholesky.hpp" 
+#include "Cholesky_LDLT.hpp"
+#include "Cholesky_LLT.hpp"
+
+
 
 #endif /* algebra_h */

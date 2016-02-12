@@ -8,20 +8,20 @@
 
 #include "SimuNonPathDepEuroBasket.hpp"
 #include <boost/random.hpp>
-#include "multiNormal.hpp"
+#include "multiNormalRN.hpp"
 #include <boost/numeric/ublas/matrix_proxy.hpp>
 
 
-SimuNonPathDepEuroBasket::SimuNonPathDepEuroBasket(nonPathDependentBasket_option o, long paths, unsigned int seed){
+SimuNonPathDepEuroBasket::SimuNonPathDepEuroBasket(const nonPathDependentBasket_option & o, long paths, unsigned int seed){
     
     N=paths;
     opt=o;
-    option_value.resize(N); option_value.clear();
-    asset_price.resize(N, opt.count_assets); asset_price.clear();
+    option_value.resize(N); option_value.setZero();
+    asset_price.resize(N, opt.count_assets); asset_price.setZero();
     
     // Boost has no RN generator for multivariate normal. I implement it, in class multiNormal. It involves Cholesky decomp to transform a vector of iid std normal RN to a sample of multivariate normal distribution with given covariance matrix.
-    boost::numeric::ublas::vector<double> m(opt.count_assets); m.clear();
-    multiNormal multiNormalRNG(m, opt.cov);
+    Eigen::VectorXd m(opt.count_assets); m.setZero();
+    multiNormalRN multiNormalRNG(m, opt.cov);
     asset_price= multiNormalRNG.sample(N, seed);
     
     for (long j=0; j<opt.count_assets; j++) {
@@ -33,29 +33,34 @@ SimuNonPathDepEuroBasket::SimuNonPathDepEuroBasket(nonPathDependentBasket_option
     }
     
     for (long i=0; i<N; i++){
-        option_value(i)= opt.f->operator()(boost::numeric::ublas::row(asset_price, i));
+//        Eigen::VectorXd t(asset_price.row(i));
+//        std::vector<double> tmp(opt.count_assets);
+//        for (long i=0; i< tmp.size(); i++) tmp[i]= t(i);
+        
+        option_value(i)= opt.f->operator()(asset_price.row(i));
     }
     
     
     double r= opt.asset_vec[0].r;
     
-    mean= boost::numeric::ublas::sum(option_value)/ option_value.size() * exp(-opt.T*r);
-    stdiv= pow(boost::numeric::ublas::norm_2(option_value), 2.0)/ option_value.size()* exp(-r*opt.T *2);
+    
+    mean= option_value.sum()/ option_value.size() * exp(-opt.T*r);
+    stdiv= option_value.squaredNorm()/ option_value.size()* exp(-r*opt.T *2);
     stdiv= stdiv- pow(mean,2.0);
     stdiv= sqrt(stdiv/ N);
 }
 
 
-SimuNonPathDepEuroBasket::SimuNonPathDepEuroBasket(nonPathDependentBasket_option o, long paths, boost::numeric::ublas::matrix<double> RN){
+SimuNonPathDepEuroBasket::SimuNonPathDepEuroBasket(const nonPathDependentBasket_option & o, long paths, const Eigen::MatrixXd & RN){
     
     N=paths;
     opt=o;
-    option_value.resize(N); option_value.clear();
-    asset_price.resize(N, opt.count_assets); asset_price.clear();
+    option_value.resize(N); option_value.setZero();
+    asset_price.resize(N, opt.count_assets); asset_price.setZero();
     
     // Boost has no RN generator for multivariate normal. I implement it, in class multiNormal. It involves Cholesky decomp to transform a vector of iid std normal RN to a sample of multivariate normal distribution with given covariance matrix.
-    boost::numeric::ublas::vector<double> m(opt.count_assets); m.clear();
-    multiNormal multiNormalRNG(m, opt.cov);
+    Eigen::VectorXd m(opt.count_assets); m.setZero();
+    multiNormalRN multiNormalRNG(m, opt.cov);
     asset_price= multiNormalRNG.sample(N, RN);
     
     for (long j=0; j<opt.count_assets; j++) {
@@ -67,16 +72,19 @@ SimuNonPathDepEuroBasket::SimuNonPathDepEuroBasket(nonPathDependentBasket_option
     }
     
     for (long i=0; i<N; i++){
-        option_value(i)= opt.f->operator()(boost::numeric::ublas::row(asset_price, i));
+//        Eigen::VectorXd t(asset_price.row(i));
+//        std::vector<double> tmp(opt.count_assets);
+//        for (long i=0; i< tmp.size(); i++) tmp[i]= t(i);
+        
+        option_value(i)= opt.f->operator()(asset_price.row(i));
     }
     
     
     double r= opt.asset_vec[0].r;
     
-    mean= boost::numeric::ublas::sum(option_value)/ option_value.size() * exp(-opt.T*r);
-    stdiv= pow(boost::numeric::ublas::norm_2(option_value), 2.0)/ option_value.size()* exp(-r*opt.T *2);
+    mean= option_value.sum()/ option_value.size() * exp(-opt.T*r);
+    stdiv= option_value.squaredNorm()/ option_value.size()* exp(-r*opt.T *2);
     stdiv= stdiv- pow(mean,2.0);
     stdiv= sqrt(stdiv/ N);
-
     
 }
