@@ -11,7 +11,7 @@
 
 #include "Cholesky_LDLT.hpp"
 #include "Cholesky_LLT.hpp"
-
-
+#include "LU_FullPiv.hpp"
+#include "LU_ParPiv.hpp"
 
 #endif /* algebra_h */

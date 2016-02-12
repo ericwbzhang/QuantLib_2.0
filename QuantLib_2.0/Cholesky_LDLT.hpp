@@ -47,20 +47,19 @@ public:
         return tmp;
     };
     
-    Eigen::MatrixXd matrixP() {
-        return ldlt.transpositionsP()* Eigen::MatrixXd::Identity(n,n);
+    Eigen::PermutationMatrix<Eigen::Dynamic> matrixP() {
+        return Eigen::PermutationMatrix<Eigen::Dynamic> (ldlt.transpositionsP());
     };
     
     bool spd() {return spd_flag;};
     
     Eigen::MatrixXd factorU(){
+        // Note: here factorU() may not return a upper triangular matrix. But we can permutate the columns to make it upper triangular.
         Eigen::VectorXd diag_D( ldlt.vectorD()) ;
         for (long i=0; i< diag_D.size(); i++){
             diag_D(i)= sqrt(diag_D(i));
         }
-        Eigen::MatrixXd tmp;
-        tmp.setIdentity(n,n);
-        tmp.diagonal()= diag_D;
+        Eigen::DiagonalMatrix<double, Eigen::Dynamic> tmp(diag_D);
         return tmp* this-> matrixU()* this-> matrixP();
     };
     

@@ -34,6 +34,8 @@
 		072E228E1C690F0000A3B74A /* option_Simulation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = option_Simulation.h; sourceTree = "<group>"; };
 		072E228F1C690F3D00A3B74A /* SimuEuro.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SimuEuro.cpp; sourceTree = "<group>"; };
 		072E22901C690F3D00A3B74A /* SimuEuro.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SimuEuro.hpp; sourceTree = "<group>"; };
+		074287401C6DA487009FAB9C /* LU_FullPiv.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LU_FullPiv.hpp; sourceTree = "<group>"; };
+		074287431C6DBBD1009FAB9C /* LU_ParPiv.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LU_ParPiv.hpp; sourceTree = "<group>"; };
 		0745142F1C6C41970049F987 /* multiNormalRN.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = multiNormalRN.cpp; sourceTree = "<group>"; };
 		074514301C6C41970049F987 /* multiNormalRN.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = multiNormalRN.hpp; sourceTree = "<group>"; };
 		074A89B21C6A58D3001440A8 /* options.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = options.hpp; sourceTree = "<group>"; };
@@ -93,13 +95,15 @@
 			name = RN;
 			sourceTree = "<group>";
 		};
-		074A89BB1C6A897B001440A8 /* algebra */ = {
+		074A89BB1C6A897B001440A8 /* algebra(practice) */ = {
 			isa = PBXGroup;
 			children = (
 				07C5B88D1C6D626700575CB8 /* Cholesky_LLT.hpp */,
 				07C5B8901C6D628000575CB8 /* Cholesky_LDLT.hpp */,
+				074287401C6DA487009FAB9C /* LU_FullPiv.hpp */,
+				074287431C6DBBD1009FAB9C /* LU_ParPiv.hpp */,
 			);
-			name = algebra;
+			name = "algebra(practice)";
 			sourceTree = "<group>";
 		};
 		076B27AE1C5A95C700F0FCEC = {
@@ -122,7 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				074A89BF1C6A92C2001440A8 /* algebra.h */,
-				074A89BB1C6A897B001440A8 /* algebra */,
+				074A89BB1C6A897B001440A8 /* algebra(practice) */,
 				074A89B71C6A8499001440A8 /* RN */,
 				07CE9B9C1C6A488B00965CA9 /* miscellaneous.h */,
 				07CE9B9A1C6A444800965CA9 /* miscellaneous */,

@@ -7,13 +7,12 @@
 //
 
 #include "multiNormalRN.hpp"
-#include "algebra.h"
 
 multiNormalRN::multiNormalRN(const Eigen::VectorXd &m, const Eigen::MatrixXd &omega) {
     mean= m;
     cov= omega;
-    Cholesky_LLT chol(cov);
-    U= chol.factorU();
+    Eigen::LLT<Eigen::MatrixXd> chol(cov);
+    U= chol.matrixU();
 }
 
 Eigen::MatrixXd multiNormalRN::sample(long n, unsigned int seed) {

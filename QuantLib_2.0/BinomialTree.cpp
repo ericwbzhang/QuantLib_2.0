@@ -18,7 +18,7 @@ BinomialTree::BinomialTree(const option & o, long steps){
     p= (exp((opt.r-opt.q)*t)-d)/(u-d);
     q=1-p;
     disc= exp(-opt.r*t);
-    
+
     value.resize(N+1);
     value.setZero();
     

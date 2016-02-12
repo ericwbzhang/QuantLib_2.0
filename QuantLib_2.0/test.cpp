@@ -75,10 +75,19 @@ int main(){
     
 
     
+
+    
+    Eigen::MatrixXd X= Eigen::MatrixXd::Random(8, 8);
+    LU_ParPiv lu(X);
+    
+    std::cout<< X<< std::endl<<std::endl;
+    std::cout<< lu.matrixL()<<std::endl<<std::endl;
+    std::cout<< lu.matrixU()<< std::endl<<std::endl;
+    std::cout<< (lu.matrixP().transpose()* lu.matrixL()* lu.matrixU()- X).lpNorm<Eigen::Infinity>()<<std::endl;
     
     
-    
-    
+    //std::cout<< lu_f.determinant()<<std::endl;
+    //  if we are taking determinant wrt non square matrix, above will show runtime error. 
     return 0;
     
     
