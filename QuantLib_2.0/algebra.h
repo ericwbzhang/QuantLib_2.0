@@ -13,5 +13,7 @@
 #include "Cholesky_LLT.hpp"
 #include "LU_FullPiv.hpp"
 #include "LU_ParPiv.hpp"
-
+#include "QR_HH.hpp"
+#include "QR_HHColPiv.hpp"
+#include "SVD_Jb.hpp"
 #endif /* algebra_h */

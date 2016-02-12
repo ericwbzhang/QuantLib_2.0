@@ -42,6 +42,7 @@
 		074A89B41C6A5FD7001440A8 /* SimuNonPathDepEuroBasket.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SimuNonPathDepEuroBasket.cpp; sourceTree = "<group>"; };
 		074A89B51C6A5FD7001440A8 /* SimuNonPathDepEuroBasket.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SimuNonPathDepEuroBasket.hpp; sourceTree = "<group>"; };
 		074A89BF1C6A92C2001440A8 /* algebra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = algebra.h; sourceTree = "<group>"; };
+		075B50BB1C6E67FC00ED6118 /* SVD_Jb.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SVD_Jb.hpp; sourceTree = "<group>"; };
 		076B27B71C5A95C700F0FCEC /* QuantLib_2.0 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = QuantLib_2.0; sourceTree = BUILT_PRODUCTS_DIR; };
 		076B27BA1C5A95C700F0FCEC /* test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = test.cpp; sourceTree = "<group>"; };
 		076B27C41C5A993F00F0FCEC /* BinomialTree.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BinomialTree.cpp; sourceTree = "<group>"; };
@@ -54,6 +55,8 @@
 		07C5B8901C6D628000575CB8 /* Cholesky_LDLT.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Cholesky_LDLT.hpp; sourceTree = "<group>"; };
 		07CE9B9B1C6A46C900965CA9 /* realValueFunctor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = realValueFunctor.h; sourceTree = "<group>"; };
 		07CE9B9C1C6A488B00965CA9 /* miscellaneous.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = miscellaneous.h; sourceTree = "<group>"; };
+		07DE145E1C6E4FA9005C0D04 /* QR_HHColPiv.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = QR_HHColPiv.hpp; sourceTree = "<group>"; };
+		07DE14611C6E4FD4005C0D04 /* QR_HH.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = QR_HH.hpp; sourceTree = "<group>"; };
 		07ED5DA21C67EE05000A7BE6 /* BinomialBSTree.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BinomialBSTree.cpp; sourceTree = "<group>"; };
 		07ED5DA31C67EE05000A7BE6 /* BinomialBSTree.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BinomialBSTree.hpp; sourceTree = "<group>"; };
 		07ED5DA51C67FD0F000A7BE6 /* AvgBinomialTree.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AvgBinomialTree.cpp; sourceTree = "<group>"; };
@@ -102,6 +105,9 @@
 				07C5B8901C6D628000575CB8 /* Cholesky_LDLT.hpp */,
 				074287401C6DA487009FAB9C /* LU_FullPiv.hpp */,
 				074287431C6DBBD1009FAB9C /* LU_ParPiv.hpp */,
+				07DE145E1C6E4FA9005C0D04 /* QR_HHColPiv.hpp */,
+				07DE14611C6E4FD4005C0D04 /* QR_HH.hpp */,
+				075B50BB1C6E67FC00ED6118 /* SVD_Jb.hpp */,
 			);
 			name = "algebra(practice)";
 			sourceTree = "<group>";

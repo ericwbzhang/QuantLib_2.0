@@ -76,14 +76,14 @@ int main(){
 
     
 
+    std::srand(int(time(0)));
+    Eigen::MatrixXd X= Eigen::MatrixXd::Random(100, 300)*1e5;
+    SVD_Jb svd(X, Eigen::ComputeFullU , Eigen::ComputeFullV);
     
-    Eigen::MatrixXd X= Eigen::MatrixXd::Random(8, 8);
-    LU_ParPiv lu(X);
-    
-    std::cout<< X<< std::endl<<std::endl;
-    std::cout<< lu.matrixL()<<std::endl<<std::endl;
-    std::cout<< lu.matrixU()<< std::endl<<std::endl;
-    std::cout<< (lu.matrixP().transpose()* lu.matrixL()* lu.matrixU()- X).lpNorm<Eigen::Infinity>()<<std::endl;
+//    std::cout<< X<< std::endl<<std::endl;
+//    std::cout<< qr.matrixQ()<<std::endl<<std::endl;
+//    std::cout<< qr.matrixR()<< std::endl<<std::endl;
+    std::cout<< (svd.matrixU()*svd.matrixS()* (svd.matrixV().transpose())- X).lpNorm<Eigen::Infinity>()<<std::endl;
     
     
     //std::cout<< lu_f.determinant()<<std::endl;

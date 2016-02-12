@@ -49,6 +49,8 @@ public:
         return U;
     };
     
+    long rank(){return lu_f.rank();};
+    
     bool isInvertible(){return lu_f.isInvertible();};
     double determinant(){return lu_f.determinant();};
     
