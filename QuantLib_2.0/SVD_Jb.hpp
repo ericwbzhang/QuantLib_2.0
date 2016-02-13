@@ -15,6 +15,7 @@
 class SVD_Jb{
 // SVD_Jb wraps the Eigen::JacobiSVD class. It takes input  a general real matrix A of n*p. The SVD of A= USV'. U n*n orthogonal matrix, V p*p orthogonal matrix and S is n*p diagonal matrix with non negative entries.
 // Note: In case of a rectangular n-by-p matrix, letting m be the smaller value among n and p, there are only m singular vectors; the remaining columns of U and V do not correspond to actual singular vectors. Asking for thin U or V means asking for only their m first columns to be formed. So U is then a n-by-m matrix, and V is then a p-by-m matrix. Notice that thin U and V are all you need for (least squares) solving.
+// ComputeFull is the slowest, while ComputeThin can significantly improve the speed especially when the size of A are extremely unbalanced. Not compute the U and V are definitely fastest. 
 
 protected:
     Eigen::JacobiSVD<Eigen::MatrixXd> svd;
@@ -68,8 +69,14 @@ public:
         return svd.matrixV();
     };
     Eigen::MatrixXd matrixS(){
-        Eigen::MatrixXd S; S.setZero(nrow, ncol);
-        S.diagonal()= this-> singularValues();
+        Eigen::VectorXd singularValues= this-> singularValues();
+        long size= singularValues.size();
+        Eigen::MatrixXd S; S.setIdentity(size,  size);
+        S.diagonal()= singularValues;
+        
+        if(fullU) S.conservativeResize(nrow, size);
+        if(fullV) S.conservativeResize(size, ncol);
+        
         return S;
     };
     

@@ -33,10 +33,6 @@ SimuNonPathDepEuroBasket::SimuNonPathDepEuroBasket(const nonPathDependentBasket_
     }
     
     for (long i=0; i<N; i++){
-//        Eigen::VectorXd t(asset_price.row(i));
-//        std::vector<double> tmp(opt.count_assets);
-//        for (long i=0; i< tmp.size(); i++) tmp[i]= t(i);
-        
         option_value(i)= opt.f->operator()(asset_price.row(i));
     }
     
@@ -72,10 +68,7 @@ SimuNonPathDepEuroBasket::SimuNonPathDepEuroBasket(const nonPathDependentBasket_
     }
     
     for (long i=0; i<N; i++){
-//        Eigen::VectorXd t(asset_price.row(i));
-//        std::vector<double> tmp(opt.count_assets);
-//        for (long i=0; i< tmp.size(); i++) tmp[i]= t(i);
-        
+      
         option_value(i)= opt.f->operator()(asset_price.row(i));
     }
     

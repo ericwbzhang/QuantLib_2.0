@@ -72,18 +72,26 @@ int main(){
     SimuNonPathDepEuroBasket simu_EuroBasket(opt, 1e5);
     
     std::cout<< simu_EuroBasket.valuation()<<std::endl<<simu_EuroBasket.valuation_stdiv()<<std::endl;
-    
 
     
-
     std::srand(int(time(0)));
-    Eigen::MatrixXd X= Eigen::MatrixXd::Random(100, 300)*1e5;
-    SVD_Jb svd(X, Eigen::ComputeFullU , Eigen::ComputeFullV);
+    Eigen::MatrixXd A(4,4);
+    A<< 10.,-1.,2., 0.,
+        -1., 11., -1., 3.,
+        2., -1., 10., -1.,
+        0.0, 3., -1., 8.;
+    Eigen::MatrixXd B(4,1);
+    B<< 6., 25., -11., 15.; 
+    linearSolver_SOR sol(A, B, 1e-8);
     
-//    std::cout<< X<< std::endl<<std::endl;
+
+  
+    std::cout<<sol.iterations()<<std::endl;
+    std::cout<< sol.solve()<< std::endl<<std::endl;
+    std::cout<< A*sol.solve()-B<<std::endl;
 //    std::cout<< qr.matrixQ()<<std::endl<<std::endl;
 //    std::cout<< qr.matrixR()<< std::endl<<std::endl;
-    std::cout<< (svd.matrixU()*svd.matrixS()* (svd.matrixV().transpose())- X).lpNorm<Eigen::Infinity>()<<std::endl;
+  //  std::cout<< (svd.matrixU()*svd.matrixS()* (svd.matrixV().transpose())- X).lpNorm<Eigen::Infinity>()<<std::endl;
     
     
     //std::cout<< lu_f.determinant()<<std::endl;

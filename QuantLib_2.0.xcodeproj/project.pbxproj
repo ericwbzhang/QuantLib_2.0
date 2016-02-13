@@ -10,6 +10,7 @@
 		072E22911C690F3D00A3B74A /* SimuEuro.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 072E228F1C690F3D00A3B74A /* SimuEuro.cpp */; };
 		074514311C6C41970049F987 /* multiNormalRN.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0745142F1C6C41970049F987 /* multiNormalRN.cpp */; };
 		074A89B61C6A5FD7001440A8 /* SimuNonPathDepEuroBasket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 074A89B41C6A5FD7001440A8 /* SimuNonPathDepEuroBasket.cpp */; };
+		075B50BF1C6E9FA300ED6118 /* linearSystemSolver_iterative.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 075B50BD1C6E9FA300ED6118 /* linearSystemSolver_iterative.cpp */; };
 		076B27BB1C5A95C700F0FCEC /* test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 076B27BA1C5A95C700F0FCEC /* test.cpp */; };
 		076B27C61C5A993F00F0FCEC /* BinomialTree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 076B27C41C5A993F00F0FCEC /* BinomialTree.cpp */; };
 		07773C991C69650B00AA10AC /* SimuEuroBarrier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07773C971C69650B00AA10AC /* SimuEuroBarrier.cpp */; };
@@ -43,6 +44,8 @@
 		074A89B51C6A5FD7001440A8 /* SimuNonPathDepEuroBasket.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SimuNonPathDepEuroBasket.hpp; sourceTree = "<group>"; };
 		074A89BF1C6A92C2001440A8 /* algebra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = algebra.h; sourceTree = "<group>"; };
 		075B50BB1C6E67FC00ED6118 /* SVD_Jb.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SVD_Jb.hpp; sourceTree = "<group>"; };
+		075B50BD1C6E9FA300ED6118 /* linearSystemSolver_iterative.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = linearSystemSolver_iterative.cpp; sourceTree = "<group>"; };
+		075B50BE1C6E9FA300ED6118 /* linearSystemSolver_iterative.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = linearSystemSolver_iterative.hpp; sourceTree = "<group>"; };
 		076B27B71C5A95C700F0FCEC /* QuantLib_2.0 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = QuantLib_2.0; sourceTree = BUILT_PRODUCTS_DIR; };
 		076B27BA1C5A95C700F0FCEC /* test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = test.cpp; sourceTree = "<group>"; };
 		076B27C41C5A993F00F0FCEC /* BinomialTree.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BinomialTree.cpp; sourceTree = "<group>"; };
@@ -108,6 +111,8 @@
 				07DE145E1C6E4FA9005C0D04 /* QR_HHColPiv.hpp */,
 				07DE14611C6E4FD4005C0D04 /* QR_HH.hpp */,
 				075B50BB1C6E67FC00ED6118 /* SVD_Jb.hpp */,
+				075B50BD1C6E9FA300ED6118 /* linearSystemSolver_iterative.cpp */,
+				075B50BE1C6E9FA300ED6118 /* linearSystemSolver_iterative.hpp */,
 			);
 			name = "algebra(practice)";
 			sourceTree = "<group>";
@@ -249,6 +254,7 @@
 				076B27C61C5A993F00F0FCEC /* BinomialTree.cpp in Sources */,
 				072E22911C690F3D00A3B74A /* SimuEuro.cpp in Sources */,
 				07773C991C69650B00AA10AC /* SimuEuroBarrier.cpp in Sources */,
+				075B50BF1C6E9FA300ED6118 /* linearSystemSolver_iterative.cpp in Sources */,
 				07ED5DA71C67FD0F000A7BE6 /* AvgBinomialTree.cpp in Sources */,
 				07ED5DA41C67EE05000A7BE6 /* BinomialBSTree.cpp in Sources */,
 				076B27BB1C5A95C700F0FCEC /* test.cpp in Sources */,
