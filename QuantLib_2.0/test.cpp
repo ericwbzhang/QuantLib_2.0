@@ -51,47 +51,51 @@ public:
 
 
 int main(){
-    asset a1(1,0.03, 0.01, 0.1);
-    asset a2= a1;
-    asset a3= a1;
     
-    Eigen::MatrixXd Omega(3,3);
+    option opt(36,40, 1, 0.06, 0, 0.4, 1, 1); // S=K=1, T=1, r=q=0.01, sigma= 0.2, Call=1, Euro=1
     
-    Omega(0,0)= 0.01; Omega(0,1)= 0.01*0.6; Omega(0,2)= 0.01*-0.3;
-    Omega(1,1)= 0.01; Omega(1,2)=0.01*0.5;
-    Omega(2,2)= 0.01;
+    opt.Call =0;
+    BS bs(opt);
+    std:: cout<< bs.price()<< std::endl;
     
-    for (long i=0; i<3; i++)
-        for (int j=0; j<i; j++)
-            Omega(i,j)= Omega(j,i);
+    opt.Euro=0;
     
-    
-    prod_payoff payoff(1.2);
-    
-    std::vector<asset> asset_vec;
-    asset_vec.push_back(a1); asset_vec.push_back(a2); asset_vec.push_back(a3);
-    
-    nonPathDependentBasket_option opt(asset_vec, 1, &payoff, Omega);
-    
-    SimuNonPathDepEuroBasket simu_EuroBasket(opt, 1e5);
-    
-    std::cout<< simu_EuroBasket.valuation()<<std::endl<<simu_EuroBasket.valuation_stdiv()<<std::endl;
+    boost::mt19937 eng(time(0));
+    boost::normal_distribution<> normal(0,1.0);
+    boost::variate_generator<boost::mt19937 &, boost::normal_distribution<> > rng(eng, normal);
+    long N= 1e5;
+    long M=opt.T* 50;
 
+    sampleCalculator_Euro lsEuro(opt, BS(opt).price());
+    SimuLS_CV LSAmerCV(opt, N, M, lsEuro);
     
-    std::srand(int(time(0)));
-    Eigen::MatrixXd A;
-    A.setRandom(1000, 1)*1e4;
-    // Eigen::MatrixXd C= A+ A.transpose();
-    Eigen::MatrixXd B;
-    B.setRandom(1000,1);B= 2*A+B;
-    Eigen::MatrixXd C(1000,2); C<< A, A;
-    C.col(0).setOnes();
+    std::cout<<LSAmerCV.valuation_calibrated() << std::endl<< LSAmerCV.valuation_stdiv_calibrated()<< std::endl << std::endl<< LSAmerCV.valuation_raw()<<std::endl<< LSAmerCV.valuation_stdiv_raw()<<std::endl;
     
-    Eigen::HouseholderQR<Eigen::MatrixXd> qr(A);
-    std::cout<< qr.solve(B)<<std::endl<<std::endl;
+//    Eigen::MatrixXd tmp( LSAmer.optionCashFlow());
+//    for (long i= 0; i< tmp.rows(); i++){
+//        int count=0;
+//        for (long j=0; j<tmp.cols(); j++){
+//            if (tmp(i,j)) count++;
+//        }
+//        if (count>1) flag= false;
+//    }
+//    
+//    std::cout<<flag<<std::endl;
     
-    lm_Ridge lm(C,B);
-    std::cout<< lm<<std::endl;
+//    std::srand(int(time(0)));
+//    Eigen::MatrixXd A;
+//    A.setRandom(1000, 1)*1e4;
+//    // Eigen::MatrixXd C= A+ A.transpose();
+//    Eigen::MatrixXd B;
+//    B.setRandom(1000,1);B= 2*A+B;
+//    Eigen::MatrixXd C(1000,2); C<< A, A;
+//    C.col(0).setOnes();
+//
+//    Eigen::HouseholderQR<Eigen::MatrixXd> qr(A);
+//    std::cout<< qr.solve(B)<<std::endl<<std::endl;
+//    
+//    lm_Ridge lm(C,B);
+//    std::cout<< lm<<std::endl;
       // A = perm * A; // permute rows
     //std::cout<<A;
 //

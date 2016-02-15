@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0700B7411C716C6400FAB5C3 /* SimuLS.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0700B73F1C716C6400FAB5C3 /* SimuLS.cpp */; };
 		072E22911C690F3D00A3B74A /* SimuEuro.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 072E228F1C690F3D00A3B74A /* SimuEuro.cpp */; };
 		074514311C6C41970049F987 /* multiNormalRN.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0745142F1C6C41970049F987 /* multiNormalRN.cpp */; };
 		074A89B61C6A5FD7001440A8 /* SimuNonPathDepEuroBasket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 074A89B41C6A5FD7001440A8 /* SimuNonPathDepEuroBasket.cpp */; };
@@ -32,6 +33,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0700B73F1C716C6400FAB5C3 /* SimuLS.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SimuLS.cpp; sourceTree = "<group>"; };
+		0700B7401C716C6400FAB5C3 /* SimuLS.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SimuLS.hpp; sourceTree = "<group>"; };
 		072E228E1C690F0000A3B74A /* option_Simulation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = option_Simulation.h; sourceTree = "<group>"; };
 		072E228F1C690F3D00A3B74A /* SimuEuro.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SimuEuro.cpp; sourceTree = "<group>"; };
 		072E22901C690F3D00A3B74A /* SimuEuro.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SimuEuro.hpp; sourceTree = "<group>"; };
@@ -91,6 +94,8 @@
 				07773C981C69650B00AA10AC /* SimuEuroBarrier.hpp */,
 				074A89B41C6A5FD7001440A8 /* SimuNonPathDepEuroBasket.cpp */,
 				074A89B51C6A5FD7001440A8 /* SimuNonPathDepEuroBasket.hpp */,
+				0700B73F1C716C6400FAB5C3 /* SimuLS.cpp */,
+				0700B7401C716C6400FAB5C3 /* SimuLS.hpp */,
 			);
 			name = option_Simulatino;
 			sourceTree = "<group>";
@@ -271,6 +276,7 @@
 				075B50BF1C6E9FA300ED6118 /* linearSystemSolver_iterative.cpp in Sources */,
 				07ED5DA71C67FD0F000A7BE6 /* AvgBinomialTree.cpp in Sources */,
 				07ED5DA41C67EE05000A7BE6 /* BinomialBSTree.cpp in Sources */,
+				0700B7411C716C6400FAB5C3 /* SimuLS.cpp in Sources */,
 				076B27BB1C5A95C700F0FCEC /* test.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

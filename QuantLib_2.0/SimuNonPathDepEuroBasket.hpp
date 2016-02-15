@@ -107,6 +107,8 @@ public:
  
  std::cout<< simu_EuroBasket.valuation()<<std::endl<<simu_EuroBasket.valuation_stdiv()<<std::endl;
  
+ 
+ 
  return 0;
  };
 

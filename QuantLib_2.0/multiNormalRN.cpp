@@ -29,7 +29,7 @@ Eigen::MatrixXd multiNormalRN::sample(long n, unsigned int seed) {
         y.setZero();
         for (long j= 0; j< p ; j++) y(j)= rng();
         
-        X.row(i)= (U.transpose()* y).transpose();
+        X.row(i)= y.transpose()*U;
     }
     return X;
 }

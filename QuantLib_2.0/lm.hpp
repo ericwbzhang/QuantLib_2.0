@@ -265,7 +265,6 @@ protected:
         if(i==k-1){
             size= n-(k-1)*test_size;
             test_start= i*test_size;
-            test_end= test_start+ size-1;
             
             testX= A.block(test_start, 0, size, p);
             testY= y.block(test_start, 0, size, 1);
@@ -322,7 +321,7 @@ protected:
         this->optiLambda(A,y,lamMIN, mid, tol1, tol2, lam, error_new, error_old, log);
         this-> optiLambda(A, y, mid, lamMAX, tol1, tol2,  lam, error_new, error_old, log);
         
-    }
+    };
     
 public:
     lm_Ridge(){};
@@ -375,6 +374,7 @@ public:
              std::vector<double> lamRange={0,100}, double tol_multiplier= 1e-3, double tol_error= 1e-4, long K=10, bool addConst= false){
         // lamRange= {lamMIN, lamMAX}. lamMax and lamMin set the range of lambda. k sets how many folds we do in cross validation.
         // tol_multiple sets the stopping condition of optimal lambda search. We stop is the interval length are smaller than tol_multiple*(lamMAX- lamMIN).
+        // tol_error controls the change of error. If error updates less than tol_error we stop evolve lambda.
         
         k=K;
         // adjust X to accomdate addConst
@@ -431,14 +431,31 @@ public:
     };
     
     
-    
-    
-    
-    
 };
 
 
+/*
+ ************ test *************
+ 
+ int main(){
+ 
+//    std::srand(int(time(0)));
+//    Eigen::MatrixXd A;
+//    A.setRandom(1000, 1)*1e4;
+//    // Eigen::MatrixXd C= A+ A.transpose();
+//    Eigen::MatrixXd B;
+//    B.setRandom(1000,1);B= 2*A+B;
+//    Eigen::MatrixXd C(1000,2); C<< A, A;
+//    C.col(0).setOnes();
+//
+//    Eigen::HouseholderQR<Eigen::MatrixXd> qr(A);
+//    std::cout<< qr.solve(B)<<std::endl<<std::endl;
+//
+//    lm_Ridge lm(C,B);
+//    std::cout<< lm<<std::endl;
+ 
+ return 0;
+}
 
-
-
+*/
 #endif /* lm_hpp */
