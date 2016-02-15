@@ -63,6 +63,8 @@ public:
         return tmp* this-> matrixU()* this-> matrixP();
     };
     
+    
+    bool invertible(){return spd_flag;};
 };
 
 #endif /* Cholesky_LDLT_hpp */

@@ -13,6 +13,10 @@
 #include "option_Simulation.h"
 #include <boost/random.hpp>
 #include "algebra.h"
+#include "lm.hpp"
+#include <dlib/array.h>
+#include <random> 
+
 
 class prod_payoff: public realValueFunctor{
 protected:
@@ -75,20 +79,25 @@ int main(){
 
     
     std::srand(int(time(0)));
-    Eigen::MatrixXd A(4,4);
-    A<< 10.,-1.,2., 0.,
-        -1., 11., -1., 3.,
-        2., -1., 10., -1.,
-        0.0, 3., -1., 8.;
-    Eigen::MatrixXd B(4,1);
-    B<< 6., 25., -11., 15.; 
-    linearSolver_SOR sol(A, B, 1e-8);
+    Eigen::MatrixXd A;
+    A.setRandom(1000, 1)*1e4;
+    // Eigen::MatrixXd C= A+ A.transpose();
+    Eigen::MatrixXd B;
+    B.setRandom(1000,1);B= 2*A+B;
+    Eigen::MatrixXd C(1000,2); C<< A, A;
+    C.col(0).setOnes();
     
-
-  
-    std::cout<<sol.iterations()<<std::endl;
-    std::cout<< sol.solve()<< std::endl<<std::endl;
-    std::cout<< A*sol.solve()-B<<std::endl;
+    Eigen::HouseholderQR<Eigen::MatrixXd> qr(A);
+    std::cout<< qr.solve(B)<<std::endl<<std::endl;
+    
+    lm_Ridge lm(C,B);
+    std::cout<< lm<<std::endl;
+      // A = perm * A; // permute rows
+    //std::cout<<A;
+//
+//    std::cout<<es.isEigenValueReal()<<std::endl;
+//    std::cout<< es.eigenvalues_real()<< std::endl<<std::endl;
+//    std::cout<< es.eigenvectors_real()* es.eigenvalues_real().asDiagonal()* es.eigenvectors_real().inverse()- A<<std::endl;
 //    std::cout<< qr.matrixQ()<<std::endl<<std::endl;
 //    std::cout<< qr.matrixR()<< std::endl<<std::endl;
   //  std::cout<< (svd.matrixU()*svd.matrixS()* (svd.matrixV().transpose())- X).lpNorm<Eigen::Infinity>()<<std::endl;
@@ -97,7 +106,5 @@ int main(){
     //std::cout<< lu_f.determinant()<<std::endl;
     //  if we are taking determinant wrt non square matrix, above will show runtime error. 
     return 0;
-    
-    
     
 };

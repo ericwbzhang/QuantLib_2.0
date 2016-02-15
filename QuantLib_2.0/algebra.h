@@ -16,6 +16,7 @@
 #include "QR_HH.hpp"
 #include "QR_HHColPiv.hpp"
 #include "SVD_Jb.hpp"
-
+#include "EigenDecomp.hpp"
+#include "OrthogonalDecomp.hpp"
 #include "linearSystemSolver_iterative.hpp"
 #endif /* algebra_h */

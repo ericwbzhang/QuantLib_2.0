@@ -91,6 +91,8 @@ public:
     };
     long rank() {return svd.rank();};
     
+    Eigen::MatrixXd solve(const Eigen::MatrixXd B){return svd.solve(B);};
+    
     
 };
 

@@ -53,6 +53,7 @@ public:
     
     bool isInvertible(){return lu_f.isInvertible();};
     double determinant(){return lu_f.determinant();};
+    Eigen::MatrixXd inverse(){return lu_f.inverse();};
     
 };
 
