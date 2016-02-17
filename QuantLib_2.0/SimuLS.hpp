@@ -90,25 +90,13 @@ public:
     virtual ~sampleCalculator_Euro(){};
     sampleCalculator_Euro( const option& o, double p): sampleCalculator(p) {opt=o;  };
     
-//    virtual double valuation(const Eigen::MatrixXd & simulationPath)const {
-//        return this->valuation_dist(simulationPath).mean();
-//    };
-    
     virtual Eigen::VectorXd valuation_dist(const Eigen::MatrixXd & simulationPath) const {
         Eigen::VectorXd res= simulationPath.col(simulationPath.cols()-1);
         for(long i=0; i< res.size(); i++){
             res(i)= opt.Call? fmax(res(i)- opt.K, 0.0) : fmax(opt.K- res(i), 0.0);
         }
-        
         return res* exp(-opt.r* opt.T);
     };
-    
-//    virtual double valuation_stdiv( const Eigen::MatrixXd & simulationPath)const {
-//        Eigen::VectorXd tmp= this-> valuation_dist(simulationPath);
-//        double m= tmp.mean();
-//        double res= tmp.squaredNorm()- m*m * tmp.size();
-//        return sqrt(res/ ( tmp.size()-1));
-//    };
     
 };
 
@@ -184,9 +172,40 @@ public:
         return this->valuation_stdiv_raw()* sqrt(1- rho*rho);
     
     };
+    
+    virtual double stdiv_shrinkage(){return sqrt(1-rho*rho);};
 };
 
 
+/*
+ ************ test ************
+
+int main(){
+    
+    option opt(36,40, 1, 0.06, 0, 0.4, 1, 1); // S=K=1, T=1, r=q=0.01, sigma= 0.2, Call=1, Euro=1
+    
+    opt.Call =0;
+    BS bs(opt);
+    std:: cout<< bs.price()<< std::endl;
+    
+    opt.Euro=0;
+    
+    boost::mt19937 eng(time(0));
+    boost::normal_distribution<> normal(0,1.0);
+    boost::variate_generator<boost::mt19937 &, boost::normal_distribution<> > rng(eng, normal);
+    long N= 1e5;
+    long M=opt.T* 50;
+    
+    sampleCalculator_Euro lsEuro(opt, BS(opt).price());
+    SimuLS_CV LSAmerCV(opt, N, M, lsEuro);
+    
+    std::cout<<LSAmerCV.valuation_calibrated() << std::endl<< LSAmerCV.valuation_stdiv_calibrated()<< std::endl << std::endl<< LSAmerCV.valuation_raw()<<std::endl<< LSAmerCV.valuation_stdiv_raw()<<std::endl;
+    
+    return 0;
+
+}
+ 
+*/
 
 
 #endif /* SimuLS_hpp */

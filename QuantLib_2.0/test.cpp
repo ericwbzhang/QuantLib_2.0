@@ -16,6 +16,9 @@
 #include "lm.hpp"
 #include <dlib/array.h>
 #include <random> 
+#include <cppOpt/cppOpt.h>
+
+
 
 
 class prod_payoff: public realValueFunctor{
@@ -70,6 +73,7 @@ int main(){
     SimuLS_CV LSAmerCV(opt, N, M, lsEuro);
     
     std::cout<<LSAmerCV.valuation_calibrated() << std::endl<< LSAmerCV.valuation_stdiv_calibrated()<< std::endl << std::endl<< LSAmerCV.valuation_raw()<<std::endl<< LSAmerCV.valuation_stdiv_raw()<<std::endl;
+    
     
 //    Eigen::MatrixXd tmp( LSAmer.optionCashFlow());
 //    for (long i= 0; i< tmp.rows(); i++){

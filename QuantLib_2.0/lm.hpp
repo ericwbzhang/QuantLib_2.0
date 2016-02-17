@@ -15,15 +15,10 @@
 #include <Boost/math/distributions.hpp>
 #include <random>
 
-
-
-
 // This module contains several linear regression models. They are all based on least square method.
 
-
-
 class lm{
-
+    
 protected:
     double R2;
     double AdjR2;
@@ -134,7 +129,7 @@ public:
         // compute R square
         double y_variation= y.squaredNorm()-n* pow(y.mean(), 2.0);
         R2= 1- res.squaredNorm()/ y_variation;
-    
+        
         this->computeStats();
         
         coutAdding="OLS Regression\n\n";
@@ -200,7 +195,7 @@ public:
         R2= 1- res.squaredNorm()/ y_variation;
         
         this->computeStats();
-
+        
         std::ostringstream ss; ss <<"feasible GLS Regression. Success= "<< success << " with "<<iterations<<" iterations. \n\n";
         coutAdding= ss.str();
         
@@ -211,7 +206,7 @@ public:
 // Weighted LS
 
 class lm_WLS: public lm{
-
+    
 public:
     lm_WLS(){};
     virtual ~lm_WLS(){};
@@ -246,7 +241,7 @@ public:
 // Ridge Regression
 
 class lm_Ridge: public lm{
-
+    
 protected:
     double lambda;
     long k;
@@ -304,7 +299,7 @@ protected:
     };
     
     void optiLambda(const Eigen::MatrixXd &A, const Eigen::VectorXd &y, double lamMIN, double lamMAX, double tol1, double tol2, double & lam, double & error_new, double &error_old , std::stringstream &log ){
-
+        
         if(lamMAX- lamMIN< tol1 || error_old- error_new< tol2) return ;
         
         double mid= .5*(lamMIN+lamMAX);
@@ -365,7 +360,7 @@ public:
         
         std::ostringstream ss; ss <<"Ridge Regression. Lambda= "<< lambda << ". Degree Freedom= "<<df<<"\nNote: For Ridge regression, both F-Stats and t-Stats and R^2 are the rough. (Since the df is continuous) \n\n";
         coutAdding= ss.str();
-    
+        
     };
     
     
@@ -392,7 +387,7 @@ public:
         p= A.cols();
         
         // decides optimal lambda.
-      
+        
         // randomly permutate A and y
         //first randomly permutate A and y
         Eigen::PermutationMatrix<Eigen::Dynamic> perm;
@@ -427,7 +422,7 @@ public:
         
         std::ostringstream ss; ss <<"Ridge Regression. Lambda= "<< lambda << ". Degree Freedom= "<<df<<"\nNote: For Ridge regression, both F-Stats and t-Stats and R^2 are the rough. (Since the df is continuous) \n\n";
         coutAdding= ss.str()+ log.str()+"\n\n";
-    
+        
     };
     
     
@@ -439,23 +434,22 @@ public:
  
  int main(){
  
-//    std::srand(int(time(0)));
-//    Eigen::MatrixXd A;
-//    A.setRandom(1000, 1)*1e4;
-//    // Eigen::MatrixXd C= A+ A.transpose();
-//    Eigen::MatrixXd B;
-//    B.setRandom(1000,1);B= 2*A+B;
-//    Eigen::MatrixXd C(1000,2); C<< A, A;
-//    C.col(0).setOnes();
-//
-//    Eigen::HouseholderQR<Eigen::MatrixXd> qr(A);
-//    std::cout<< qr.solve(B)<<std::endl<<std::endl;
-//
-//    lm_Ridge lm(C,B);
-//    std::cout<< lm<<std::endl;
+ //    std::srand(int(time(0)));
+ //    Eigen::MatrixXd A;
+ //    A.setRandom(1000, 1)*1e4;
+ //    // Eigen::MatrixXd C= A+ A.transpose();
+ //    Eigen::MatrixXd B;
+ //    B.setRandom(1000,1);B= 2*A+B;
+ //    Eigen::MatrixXd C(1000,2); C<< A, A;
+ //    C.col(0).setOnes();
+ //
+ //    Eigen::HouseholderQR<Eigen::MatrixXd> qr(A);
+ //    std::cout<< qr.solve(B)<<std::endl<<std::endl;
+ //
+ //    lm_Ridge lm(C,B);
+ //    std::cout<< lm<<std::endl;
  
  return 0;
-}
-
-*/
+ }
+ */
 #endif /* lm_hpp */
