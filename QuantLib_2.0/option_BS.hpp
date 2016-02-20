@@ -1,25 +1,27 @@
 //
-//  BS.hpp
+//  option_BS.hpp
 //  QuantLib_2.0
 //
-//  Created by EricZ on 1/28/16.
+//  Created by EricZ on 2/16/16.
 //  Copyright © 2016 EricZ. All rights reserved.
 //
 
-#ifndef BS_hpp
-#define BS_hpp
+#ifndef option_BS_hpp
+#define option_BS_hpp
+
+#include <stdio.h>
 
 #include <stdio.h>
 #include "options.hpp"
 #include <boost/math/distributions/normal.hpp>
 
-struct BS{
-
+struct option_BS{
+    
     option opt;
     double d1 ,d2, value;
     
-    BS(){}
-    BS(option o){
+    option_BS(){}
+    option_BS(option o){
         opt=o;
         d1=(log(opt.S)-log(opt.K)+(opt.r-opt.q+0.5*opt.sigma*opt.sigma)*opt.T)/(opt.sigma*sqrt(opt.T));
         d2=d1- opt.sigma*sqrt(opt.T);
@@ -80,7 +82,7 @@ struct BS{
             //Put
             
             result= -pdf(normal, d1)* sqrt(opt.T)/opt.sigma - opt.S* cdf(normal, d1)*exp(-opt.q*opt.T)* opt.T+ opt.K* exp(-opt.r* opt.T)* pdf(normal, d2)*sqrt(opt.T)/ opt.sigma+ opt.S* exp(-opt.q* opt.T)* opt.T;
-        
+            
         }
         
         return result;
@@ -110,7 +112,7 @@ struct BS{
             //Call
             result= -exp(-opt.q*opt.T) * opt.S* pdf(normal, d1)* opt.sigma/ (2*sqrt(opt.T)- opt.r* opt.K*exp( -opt.r* opt.T)* cdf(normal, d2)+ opt.q* opt.S*exp( -opt.q*opt.T)* cdf(normal, d1));
         }else{
-        //Put
+            //Put
             result= -exp(-opt.q*opt.T) * opt.S* pdf(normal, d1)* opt.sigma/ (2*sqrt(opt.T)+ opt.r* opt.K*exp( -opt.r* opt.T)* cdf(normal, -d2)- opt.q* opt.S*exp( -opt.q*opt.T)* cdf(normal, -d1));
         }
         
@@ -123,4 +125,6 @@ struct BS{
     }
 };
 
-#endif /* BS_hpp */
+
+
+#endif /* option_BS_hpp */

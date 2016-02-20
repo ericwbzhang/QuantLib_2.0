@@ -33,7 +33,7 @@ SimuNonPathDepEuroBasket::SimuNonPathDepEuroBasket(const nonPathDependentBasket_
     }
     
     for (long i=0; i<N; i++){
-        option_value(i)= opt.f->operator()(asset_price.row(i));
+        option_value(i)= opt.f->operator()(asset_price.row(i).data());
     }
     
     
@@ -69,7 +69,7 @@ SimuNonPathDepEuroBasket::SimuNonPathDepEuroBasket(const nonPathDependentBasket_
     
     for (long i=0; i<N; i++){
       
-        option_value(i)= opt.f->operator()(asset_price.row(i));
+        option_value(i)= opt.f->operator()(asset_price.row(i).data());
     }
     
     

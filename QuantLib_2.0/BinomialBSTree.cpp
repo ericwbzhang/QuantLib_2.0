@@ -30,7 +30,7 @@ BinomialBSTree:: BinomialBSTree(const option &o, long steps){
         // For Euro option, the call and put share same evolution algorithm.
         for(long i=0; i< N; i++) {
             o1.S= opt.S* pow(u, N-1-i)* pow(d, i);
-            BS bs(o1);
+            option_BS bs(o1);
             value(i)= bs.price();
         }
         
@@ -44,7 +44,7 @@ BinomialBSTree:: BinomialBSTree(const option &o, long steps){
         if (opt.Call) {// American Call
             for (long i=0; i< N; i++) {
                 o1.S= opt.S* pow(u, N-1-i)* pow(d, i);
-                BS bs(o1);
+                option_BS bs(o1);
                 value(i)= bs.price();
                 value(i)= fmax( value(i), o1.S- opt.K);
             }
@@ -59,7 +59,7 @@ BinomialBSTree:: BinomialBSTree(const option &o, long steps){
         }else { //American Put
             for (long i=0; i<N; i++) {
                 o1.S= opt.S* pow(u, N-1-i)* pow(d, i);
-                BS bs(o1);
+                option_BS bs(o1);
                 value(i)= bs.price();
                 value(i)= fmax( value(i), opt.K-o1.S);
             }

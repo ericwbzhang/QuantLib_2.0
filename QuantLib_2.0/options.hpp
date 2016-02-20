@@ -12,7 +12,7 @@
 #include <stdio.h>
 #include <math.h>
 #include <vector>
-#include "realValueFunctor.h"
+#include <Math/IFunction.h>
 #include <Eigen/Dense>
 
 struct option{
@@ -67,14 +67,19 @@ struct nonPathDependentBasket_option{
     std::vector<asset> asset_vec;
     long count_assets;
     double T;
-    std::shared_ptr<realValueFunctor> f;
+    std::shared_ptr<ROOT::Math::IBaseFunctionMultiDim> f;
     Eigen::MatrixXd cov;
     
     
     nonPathDependentBasket_option(){};
-    nonPathDependentBasket_option(const std::vector<asset> & vec, double expiration, realValueFunctor * payoff, const Eigen::MatrixXd & mtx): asset_vec(vec), T(expiration), cov(mtx), count_assets(vec.size()), f(std::shared_ptr<realValueFunctor>(payoff->clone())){};
-    nonPathDependentBasket_option( const nonPathDependentBasket_option & o): asset_vec(o.asset_vec), count_assets(o.count_assets), T(o.T), cov(o.cov), f(std::shared_ptr<realValueFunctor>(o.f->clone())){
+    nonPathDependentBasket_option(const std::vector<asset> & vec, double expiration, ROOT::Math::IBaseFunctionMultiDim * payoff, const Eigen::MatrixXd & mtx): asset_vec(vec), T(expiration), cov(mtx), count_assets(vec.size()){
+        f.reset( payoff->Clone());
+    };
+    nonPathDependentBasket_option( const nonPathDependentBasket_option & o): asset_vec(o.asset_vec), count_assets(o.count_assets), T(o.T), cov(o.cov){
         // copy constructor. we want a deep copy, ie, we also need to clone *f
+        
+        f.reset(o.f->Clone());
+        
     };
 
     virtual ~nonPathDependentBasket_option () {};
@@ -86,7 +91,7 @@ struct nonPathDependentBasket_option{
         T=o.T;
         cov=o.cov;
         
-        f= std::shared_ptr<realValueFunctor> (o.f->clone());
+        f.reset(o.f->Clone());
         
         return *this;
     };

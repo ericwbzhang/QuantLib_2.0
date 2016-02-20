@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0700B7411C716C6400FAB5C3 /* SimuLS.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0700B73F1C716C6400FAB5C3 /* SimuLS.cpp */; };
+		0721826D1C78D97A0096E8A8 /* libMathCore.so in Frameworks */ = {isa = PBXBuildFile; fileRef = 0721826B1C78D97A0096E8A8 /* libMathCore.so */; };
+		0721826E1C78D97A0096E8A8 /* libMathMore.so in Frameworks */ = {isa = PBXBuildFile; fileRef = 0721826C1C78D97A0096E8A8 /* libMathMore.so */; };
 		072E22911C690F3D00A3B74A /* SimuEuro.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 072E228F1C690F3D00A3B74A /* SimuEuro.cpp */; };
 		074514311C6C41970049F987 /* multiNormalRN.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0745142F1C6C41970049F987 /* multiNormalRN.cpp */; };
 		074A89B61C6A5FD7001440A8 /* SimuNonPathDepEuroBasket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 074A89B41C6A5FD7001440A8 /* SimuNonPathDepEuroBasket.cpp */; };
@@ -35,6 +37,8 @@
 /* Begin PBXFileReference section */
 		0700B73F1C716C6400FAB5C3 /* SimuLS.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SimuLS.cpp; sourceTree = "<group>"; };
 		0700B7401C716C6400FAB5C3 /* SimuLS.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SimuLS.hpp; sourceTree = "<group>"; };
+		0721826B1C78D97A0096E8A8 /* libMathCore.so */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libMathCore.so; path = ../../../../../usr/local/Cellar/root/5.34.34_1/lib/root/libMathCore.so; sourceTree = "<group>"; };
+		0721826C1C78D97A0096E8A8 /* libMathMore.so */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libMathMore.so; path = ../../../../../usr/local/Cellar/root/5.34.34_1/lib/root/libMathMore.so; sourceTree = "<group>"; };
 		072E228E1C690F0000A3B74A /* option_Simulation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = option_Simulation.h; sourceTree = "<group>"; };
 		072E228F1C690F3D00A3B74A /* SimuEuro.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SimuEuro.cpp; sourceTree = "<group>"; };
 		072E22901C690F3D00A3B74A /* SimuEuro.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SimuEuro.hpp; sourceTree = "<group>"; };
@@ -54,16 +58,16 @@
 		076B27C41C5A993F00F0FCEC /* BinomialTree.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BinomialTree.cpp; sourceTree = "<group>"; };
 		076B27C51C5A993F00F0FCEC /* BinomialTree.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BinomialTree.hpp; sourceTree = "<group>"; };
 		076B27C71C5AB1EA00F0FCEC /* option_TreePricers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = option_TreePricers.h; sourceTree = "<group>"; };
-		076B27CB1C5AB32100F0FCEC /* BS.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = BS.hpp; path = QuantLib_2.0/BS.hpp; sourceTree = "<group>"; };
 		07764C0C1C6FAD85003C1DC9 /* EigenDecomp.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = EigenDecomp.hpp; sourceTree = "<group>"; };
 		07764C0F1C6FC31F003C1DC9 /* OrthogonalDecomp.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = OrthogonalDecomp.hpp; sourceTree = "<group>"; };
 		07764C151C6FCDA6003C1DC9 /* lm.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = lm.hpp; sourceTree = "<group>"; };
 		07773C971C69650B00AA10AC /* SimuEuroBarrier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SimuEuroBarrier.cpp; sourceTree = "<group>"; };
 		07773C981C69650B00AA10AC /* SimuEuroBarrier.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SimuEuroBarrier.hpp; sourceTree = "<group>"; };
+		07B75C0D1C742DA20003496B /* regression.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = regression.h; sourceTree = "<group>"; };
+		07B75C0E1C742DEE0003496B /* RNEngine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNEngine.h; sourceTree = "<group>"; };
+		07B75C101C742E580003496B /* option_BS.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = option_BS.hpp; sourceTree = "<group>"; };
 		07C5B88D1C6D626700575CB8 /* Cholesky_LLT.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Cholesky_LLT.hpp; sourceTree = "<group>"; };
 		07C5B8901C6D628000575CB8 /* Cholesky_LDLT.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Cholesky_LDLT.hpp; sourceTree = "<group>"; };
-		07CE9B9B1C6A46C900965CA9 /* realValueFunctor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = realValueFunctor.h; sourceTree = "<group>"; };
-		07CE9B9C1C6A488B00965CA9 /* miscellaneous.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = miscellaneous.h; sourceTree = "<group>"; };
 		07DE145E1C6E4FA9005C0D04 /* QR_HHColPiv.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = QR_HHColPiv.hpp; sourceTree = "<group>"; };
 		07DE14611C6E4FD4005C0D04 /* QR_HH.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = QR_HH.hpp; sourceTree = "<group>"; };
 		07ED5DA21C67EE05000A7BE6 /* BinomialBSTree.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BinomialBSTree.cpp; sourceTree = "<group>"; };
@@ -79,6 +83,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0721826D1C78D97A0096E8A8 /* libMathCore.so in Frameworks */,
+				0721826E1C78D97A0096E8A8 /* libMathMore.so in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -130,6 +136,8 @@
 		076B27AE1C5A95C700F0FCEC = {
 			isa = PBXGroup;
 			children = (
+				0721826B1C78D97A0096E8A8 /* libMathCore.so */,
+				0721826C1C78D97A0096E8A8 /* libMathMore.so */,
 				076B27B91C5A95C700F0FCEC /* QuantLib_2.0 */,
 				076B27B81C5A95C700F0FCEC /* Products */,
 			);
@@ -148,27 +156,19 @@
 			children = (
 				074A89BF1C6A92C2001440A8 /* algebra.h */,
 				074A89BB1C6A897B001440A8 /* algebra(practice) */,
+				07B75C0D1C742DA20003496B /* regression.h */,
 				07764C0A1C6FA7F4003C1DC9 /* Regression */,
+				07B75C0E1C742DEE0003496B /* RNEngine.h */,
 				074A89B71C6A8499001440A8 /* RNEngine */,
-				07CE9B9C1C6A488B00965CA9 /* miscellaneous.h */,
-				07CE9B9A1C6A444800965CA9 /* miscellaneous */,
-				076B27C91C5AB30900F0FCEC /* BS */,
+				07B75C101C742E580003496B /* option_BS.hpp */,
 				076B27C71C5AB1EA00F0FCEC /* option_TreePricers.h */,
 				076B27C31C5A97FB00F0FCEC /* option_TreePricers */,
 				072E228E1C690F0000A3B74A /* option_Simulation.h */,
 				072E228D1C690EAE00A3B74A /* option_Simulatino */,
-				076B27C11C5A961100F0FCEC /* optionInfo */,
+				074A89B21C6A58D3001440A8 /* options.hpp */,
 				076B27BA1C5A95C700F0FCEC /* test.cpp */,
 			);
 			path = QuantLib_2.0;
-			sourceTree = "<group>";
-		};
-		076B27C11C5A961100F0FCEC /* optionInfo */ = {
-			isa = PBXGroup;
-			children = (
-				074A89B21C6A58D3001440A8 /* options.hpp */,
-			);
-			name = optionInfo;
 			sourceTree = "<group>";
 		};
 		076B27C31C5A97FB00F0FCEC /* option_TreePricers */ = {
@@ -186,29 +186,12 @@
 			name = option_TreePricers;
 			sourceTree = "<group>";
 		};
-		076B27C91C5AB30900F0FCEC /* BS */ = {
-			isa = PBXGroup;
-			children = (
-				076B27CB1C5AB32100F0FCEC /* BS.hpp */,
-			);
-			name = BS;
-			path = ..;
-			sourceTree = "<group>";
-		};
 		07764C0A1C6FA7F4003C1DC9 /* Regression */ = {
 			isa = PBXGroup;
 			children = (
 				07764C151C6FCDA6003C1DC9 /* lm.hpp */,
 			);
 			name = Regression;
-			sourceTree = "<group>";
-		};
-		07CE9B9A1C6A444800965CA9 /* miscellaneous */ = {
-			isa = PBXGroup;
-			children = (
-				07CE9B9B1C6A46C900965CA9 /* realValueFunctor.h */,
-			);
-			name = miscellaneous;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -366,8 +349,14 @@
 		076B27BF1C5A95C700F0FCEC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				HEADER_SEARCH_PATHS = /usr/local/include;
-				LIBRARY_SEARCH_PATHS = "";
+				HEADER_SEARCH_PATHS = (
+					/usr/local/include,
+					/usr/local/include/root,
+				);
+				LIBRARY_SEARCH_PATHS = (
+					/usr/local/lib/root,
+					/usr/local/Cellar/root/5.34.34_1/lib/root,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -375,8 +364,14 @@
 		076B27C01C5A95C700F0FCEC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				HEADER_SEARCH_PATHS = /usr/local/include;
-				LIBRARY_SEARCH_PATHS = "";
+				HEADER_SEARCH_PATHS = (
+					/usr/local/include,
+					/usr/local/include/root,
+				);
+				LIBRARY_SEARCH_PATHS = (
+					/usr/local/lib/root,
+					/usr/local/Cellar/root/5.34.34_1/lib/root,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

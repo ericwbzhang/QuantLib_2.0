@@ -14,8 +14,13 @@
 #include "algebra.h"
 #include <Boost/math/distributions.hpp>
 #include <random>
+#include <Math/IFunction.h>
+#include <Math/BrentMinimizer1D.h>
+
 
 // This module contains several linear regression models. They are all based on least square method.
+
+
 
 class lm{
     
@@ -25,7 +30,6 @@ protected:
     double res_variance;
     long n, p;
     double df;
-    
     
     Eigen::VectorXd coef;
     Eigen::VectorXd res;
@@ -41,7 +45,7 @@ protected:
         t_stats.resize(p,2);
         boost::math::students_t_distribution<double > t_dist(fmax(long (n- df),1));
         for (long i=0; i<p; i++){
-            t_stats(i,0)= coef(i)/ coef_cov(i,i);
+            t_stats(i,0)= coef(i)/ sqrt(coef_cov(i,i));
             t_stats(i,1)= 1- cdf(t_dist, t_stats(i,0));
         }
         //F stats
@@ -70,6 +74,9 @@ public:
     
     virtual Eigen::VectorXd prediction(const Eigen::MatrixXd & X){
         return X* coef;
+    };
+    virtual Eigen::VectorXd predictionError( const Eigen::MatrixXd &X, const Eigen::VectorXd &y){
+        return y- X*coef;
     };
     virtual double predictionErrorVar(const Eigen::MatrixXd & X, const Eigen::VectorXd & y){
         Eigen::VectorXd error(X*coef-y);
@@ -246,76 +253,105 @@ protected:
     double lambda;
     long k;
     
-    void ithFold( const Eigen::MatrixXd &A, const Eigen::VectorXd &y, Eigen::MatrixXd &trainX, Eigen::VectorXd &trainY, Eigen::MatrixXd &testX, Eigen::VectorXd &testY,  long i ){
-        // jthFold generates the jth training and testing sample of the k-fold validation
+    
+    class CV_error: public ROOT::Math::IBaseFunctionOneDim{
+    private:
+        std::vector<Eigen::MatrixXd> TestX;
+        std::vector<Eigen::VectorXd> TestY;
+        std::vector<Eigen::MatrixXd> TrainX;
+        std::vector<Eigen::VectorXd> TrainY;
         
-        long test_size= n/k;
-        i=i-1;
-        // construct traning sample and test sample
+        long N;
         
-        long size; // size defines how many rows to include in test sample
-        long test_start; //  the row index of the starting test sample
-        long test_end; // the row index of the ending test sample
         
-        if(i==k-1){
-            size= n-(k-1)*test_size;
-            test_start= i*test_size;
+        void ithFold( const Eigen::MatrixXd &A, const Eigen::VectorXd &y, Eigen::MatrixXd &trainX, Eigen::VectorXd &trainY, Eigen::MatrixXd &testX, Eigen::VectorXd &testY, long k, long i ){
+            // jthFold generates the jth training and testing sample of the k-fold validation
+            long n= A.rows();
+            long p= A.cols();
+            long test_size= n/k;
+            i=i-1;
+            // construct traning sample and test sample
             
-            testX= A.block(test_start, 0, size, p);
-            testY= y.block(test_start, 0, size, 1);
-            trainX= A.block(0,0, n-size, p);
-            trainY= y.block(0,0, n-size, 1);
+            long size; // size defines how many rows to include in test sample
+            long test_start; //  the row index of the starting test sample
+            long test_end; // the row index of the ending test sample
             
-        }else {
-            size= test_size;
-            test_start= i* test_size;
-            test_end= test_start+ size-1;
+            if(i==k-1){
+                size= n-(k-1)*test_size;
+                test_start= i*test_size;
+                
+                testX= A.block(test_start, 0, size, p);
+                testY= y.block(test_start, 0, size, 1);
+                trainX= A.block(0,0, n-size, p);
+                trainY= y.block(0,0, n-size, 1);
+                
+            }else {
+                size= test_size;
+                test_start= i* test_size;
+                test_end= test_start+ size-1;
+                
+                testX= A.block(test_start, 0, size, p);
+                testY= y.block(test_start, 0, size, 1);
+                trainX.resize(n-size, p);
+                trainY.resize(n-size);
+                trainX.block(0,0, test_start, p)= A.block(0,0, test_start, p);
+                trainX.block(test_start,0, n-size- test_start,p)= A.block(test_end+1, 0, n- size- test_start, p);
+                trainY.block(0,0, test_start,1)= y.block(0,0, test_start,1);
+                trainY.block(test_start,0, n-size- test_start,1)= y.block(test_end+1,0, n-size- test_start,1);
+            }
             
-            testX= A.block(test_start, 0, size, p);
-            testY= y.block(test_start, 0, size, 1);
-            trainX.resize(n-size, p);
-            trainY.resize(n-size);
-            trainX.block(0,0, test_start, p)= A.block(0,0, test_start, p);
-            trainX.block(test_start,0, n-size- test_start,p)= A.block(test_end+1, 0, n- size- test_start, p);
-            trainY.block(0,0, test_start,1)= y.block(0,0, test_start,1);
-            trainY.block(test_start,0, n-size- test_start,1)= y.block(test_end+1,0, n-size- test_start,1);
-        }
+        };
+        
+        double DoEval(double lam) const{
+            double error=0;
+            
+            long n= TrainX.size();
+            for (long i=0; i<n; i++){
+                // train the regression model with lambda= lam
+                lm_Ridge lmR(TrainX[i], TrainY[i], lam);
+                // evaluate and record prediction error
+                Eigen::VectorXd tmp= lmR.predictionError(TestX[i], TestY[i]);
+                
+                error+= tmp.squaredNorm();
+            }
+            
+            error/= N;
+            return error;
+        };
+        
+    public:
+        CV_error(){};
+        CV_error(const Eigen::MatrixXd &A, const Eigen::VectorXd &y, long k){
+            N= A.rows();
+            for (long i=1 ;i <=k ; i++){
+                Eigen::MatrixXd trainX, testX;
+                Eigen::VectorXd trainY, testY;
+                this->ithFold(A, y, trainX, trainY, testX, testY, k, i);
+                TrainX.push_back(trainX);
+                TrainY.push_back(trainY);
+                TestX.push_back(testX);
+                TestY.push_back(testY);
+            }
+        };
+        virtual ~CV_error(){};
+        
+        ROOT::Math::IBaseFunctionOneDim * Clone() const { return new CV_error(*this);};
         
     };
     
-    double CVerror(const Eigen::MatrixXd &A, const Eigen::VectorXd &y, double lam) {
-        double error=0;
-        for (long i=1; i<=k ; i++ ){
-            Eigen::MatrixXd trainX, testX;
-            Eigen::VectorXd trainY, testY;
-            this->ithFold(A, y, trainX, trainY, testX, testY, i);
-            
-            // train the regression model with lambda= lam
-            lm_Ridge lmR(trainX, trainY, lam);
-            // evaluate and recorde prediction error
-            error+= lmR.predictionErrorStdiv(testX, testY);
-        }
-        return  error/k;
-    };
-    
-    void optiLambda(const Eigen::MatrixXd &A, const Eigen::VectorXd &y, double lamMIN, double lamMAX, double tol1, double tol2, double & lam, double & error_new, double &error_old , std::stringstream &log ){
+    bool optiLambda(const Eigen::MatrixXd &A, const Eigen::VectorXd &y, double lamMIN, double lamMAX, double tol1, double tol2, long iterMAX, double & lam, std::stringstream &log ){
+        // optiLambda wraps the ROOT::Math::BrentMinimizer1D minimizer. It returns a flag whether the minimizer converges.
+        // tol1 controls the abs error; tol2 controls the relative error
         
-        if(lamMAX- lamMIN< tol1 || error_old- error_new< tol2) return ;
+        CV_error CVErr(A, y, k);
+        ROOT::Math::BrentMinimizer1D bm;
+        bm.SetFunction(CVErr, lamMIN, lamMAX);
+        bool res= bm.Minimize(iterMAX, tol1, tol2);
         
-        double mid= .5*(lamMIN+lamMAX);
-        double tmp= this-> CVerror( A, y, mid);
+        lam= bm.XMinimum();
         
-        if(error_new> tmp) {
-            
-            log<< "Lambda: "<< mid<< "\t error="<< tmp<<std::endl;
-            error_old= error_new;
-            error_new= tmp;
-            lam= mid;
-        }
-        
-        this->optiLambda(A,y,lamMIN, mid, tol1, tol2, lam, error_new, error_old, log);
-        this-> optiLambda(A, y, mid, lamMAX, tol1, tol2,  lam, error_new, error_old, log);
-        
+        log<< "Convergence: " << res<< std::endl;
+        return res;
     };
     
 public:
@@ -366,10 +402,13 @@ public:
     
     
     lm_Ridge(const Eigen::MatrixXd &X, const Eigen::VectorXd &y,
-             std::vector<double> lamRange={0,100}, double tol_multiplier= 1e-3, double tol_error= 1e-4, long K=10, bool addConst= false){
+             std::vector<double> lamRange={0,100}, double tol_multiplier= 1e-3, double tol_error= 1e-4, long iterMAX= 100,
+             long K=10, bool addConst= false){
         // lamRange= {lamMIN, lamMAX}. lamMax and lamMin set the range of lambda. k sets how many folds we do in cross validation.
         // tol_multiple sets the stopping condition of optimal lambda search. We stop is the interval length are smaller than tol_multiple*(lamMAX- lamMIN).
         // tol_error controls the change of error. If error updates less than tol_error we stop evolve lambda.
+        // iterMAX controls the max of iteration times.
+        
         
         k=K;
         // adjust X to accomdate addConst
@@ -396,11 +435,8 @@ public:
         Eigen::MatrixXd permA= perm*A;
         Eigen::VectorXd permy= perm*y;
         // define CVerror
-        lambda= .5*(lamRange[0]+ lamRange[1]);
-        double error_old =1e6;
-        double error_new= 1e4;
         std::stringstream log;
-        this->optiLambda(permA, permy, lamRange[0], lamRange[1], tol_multiplier*(lamRange[1]-lamRange[0]), tol_error, lambda, error_new, error_old, log);
+        this->optiLambda(permA, permy, lamRange[0], lamRange[1], tol_error, tol_multiplier*(lamRange[1]-lamRange[0]), iterMAX, lambda, log);
         
         // estimate the coefs
         Eigen::MatrixXd tmp; tmp.setIdentity(p,p);

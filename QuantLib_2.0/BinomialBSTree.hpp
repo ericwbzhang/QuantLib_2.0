@@ -11,7 +11,7 @@
 
 #include <stdio.h>
 #include "BinomialTree.hpp" 
-#include "BS.hpp"
+#include "option_BS.hpp"
 
 class BinomialBSTree: public BinomialTree {
 // The content of Binomial Tree

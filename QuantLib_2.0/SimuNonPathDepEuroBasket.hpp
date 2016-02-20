@@ -47,33 +47,29 @@ public:
 /*
  
  ******** test *************
-
- class prod_payoff: public realValueFunctor{
+ 
+ class prod_payoff: public ROOT::Math::IBaseFunctionMultiDim{
  protected:
  double K;
+ int asset_count;
+ bool Call;
  
+ double DoEval(const double * x) const{
+ double res=1;
+ for (int i=0; i<asset_count; i++) res*= x[i];
+ 
+ return fmax(Call?res-K: K-res, 0.0);
+ };
  public:
  prod_payoff(){};
- prod_payoff(double strike): K(strike){};
+ prod_payoff(double strike, int count, bool CallORPut): K(strike), asset_count(count), Call(CallORPut){};
+ virtual ~ prod_payoff(){};
  
- virtual double operator()(std::vector<double> args){
- double res=1;
- for (std::vector<double>::iterator it= args.begin(); it!= args.end(); it++){
- res*= *it;
- }
+ unsigned int NDim() const {return asset_count;};
  
- return fmax(0.0, res-K);
- };
  
- virtual double operator()(boost::numeric::ublas::vector<double> args){
- long n=args.size();
- std::vector<double> vec(n);
- for (long i=0; i<n; i++) vec[i]= args(i);
  
- return this-> operator()(vec);
- };
- 
- virtual realValueFunctor* clone(){
+ ROOT::Math::IBaseFunctionMultiDim* Clone() const {
  return new prod_payoff(*this);
  };
  
@@ -85,7 +81,7 @@ public:
  asset a2= a1;
  asset a3= a1;
  
- boost::numeric::ublas::matrix<double> Omega(3,3);
+ Eigen::MatrixXd Omega(3,3);
  
  Omega(0,0)= 0.01; Omega(0,1)= 0.01*0.6; Omega(0,2)= 0.01*-0.3;
  Omega(1,1)= 0.01; Omega(1,2)=0.01*0.5;
@@ -96,7 +92,7 @@ public:
  Omega(i,j)= Omega(j,i);
  
  
- prod_payoff payoff(1.2);
+ prod_payoff payoff(1.2, 3, 1);
  
  std::vector<asset> asset_vec;
  asset_vec.push_back(a1); asset_vec.push_back(a2); asset_vec.push_back(a3);
