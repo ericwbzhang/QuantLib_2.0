@@ -10,7 +10,7 @@
 #define SimuNonPathDepEuroBasket_hpp
 
 #include <stdio.h>
-#include "options.hpp"
+#include "options_info.hpp"
 
 class SimuNonPathDepEuroBasket {
     // SimuNonPathDepEuroBasket prices a non path dependent basket option by simulations.

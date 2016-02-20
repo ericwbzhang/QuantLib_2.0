@@ -11,7 +11,7 @@
 
 #include <stdio.h>
 #include <Eigen/Dense>
-#include "options.hpp"
+#include "options_info.hpp"
 #include "SimuEuro.hpp"
 #include "lm.hpp"
 #include <unordered_map>

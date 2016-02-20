@@ -10,7 +10,7 @@
 #define BinomialTree_hpp
 
 #include <stdio.h>
-#include "options.hpp"
+#include "options_info.hpp"
 #include <Eigen/Dense>
 
 

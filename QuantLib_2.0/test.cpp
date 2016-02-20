@@ -13,10 +13,7 @@
 #include "algebra.h"
 #include "lm.hpp"
 #include <random>
-#include <Math/IFunction.h>
-
-
-
+#include <Math/IFunction.h> // ROOT Math library
 
 class func: public ROOT::Math::IBaseFunctionOneDim{
 
