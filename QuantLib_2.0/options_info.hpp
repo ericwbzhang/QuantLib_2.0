@@ -6,8 +6,8 @@
 //  Copyright © 2016 EricZ. All rights reserved.
 //
 
-#ifndef options_hpp
-#define options_hpp
+#ifndef options_info_hpp
+#define options_info_hpp
 
 #include <stdio.h>
 #include <math.h>
@@ -122,4 +122,4 @@ struct nonPathDependentBasket_option{
 
 
 
-#endif /* options_hpp */
+#endif /* options_info_hpp */

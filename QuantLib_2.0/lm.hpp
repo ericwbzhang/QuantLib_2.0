@@ -37,6 +37,8 @@ protected:
     Eigen::MatrixXd F_stats;
     Eigen::MatrixXd coef_cov;
     
+    std::string coutAdding;
+    
     virtual void computeStats(){
         // AdjR2
         AdjR2=1- (1-R2)*(n-1)/double(n-df);
@@ -46,22 +48,27 @@ protected:
         boost::math::students_t_distribution<double > t_dist(fmax(long (n- df),1));
         for (long i=0; i<p; i++){
             t_stats(i,0)= coef(i)/ sqrt(coef_cov(i,i));
-            t_stats(i,1)= 1- cdf(t_dist, t_stats(i,0));
+            if (std::isnan(t_stats(i,0))) {t_stats(i,1)= NAN; }
+            else{ t_stats(i,1)= 1- cdf(t_dist, t_stats(i,0)); }
         }
+        
         //F stats
         F_stats.resize(1,2);
         F_stats(0,0)= R2/(1-R2)* double(n- df)/ (df-1);
-        boost::math::fisher_f_distribution<double> f_dist(fmax(long (df-1), 1), long (n-df));
-        F_stats(0,1)= 1-cdf(f_dist, fmax(0.0,F_stats(0,0)));
-        
+        if(std::isnan(F_stats(0,0))){ F_stats(0,1)= NAN;}
+        else{
+            boost::math::fisher_f_distribution<double> f_dist(fmax(long (df-1), 1), long (n-df));
+            F_stats(0,1)= 1-cdf(f_dist, fmax(0.0,F_stats(0,0)));
+        }
     };
     
-    std::string coutAdding;
+    
 public:
     lm(){};
     virtual ~lm(){};
     
     virtual double Rsquare(){return R2;};
+    virtual double RsquareAdj() {return AdjR2; };
     virtual double resVariance(){return res_variance;};
     virtual Eigen::MatrixXd coefCovariance(){return coef_cov; };
     virtual Eigen::MatrixXd tStats(){ return t_stats; };
@@ -247,7 +254,7 @@ public:
 
 // Ridge Regression
 
-class lm_Ridge: public lm{
+class lm_Ridge: public lm_OLS{
     
 protected:
     double lambda;
@@ -360,7 +367,7 @@ public:
     lm_Ridge(const Eigen::MatrixXd &X, const Eigen::VectorXd &y, double lam, bool addConst=false){
         lambda= lam;
         k=0;
-        
+        if( lambda!=0) {
         // adjust X to accomdate addConst
         Eigen::MatrixXd A(X);
         if(addConst) {
@@ -396,13 +403,33 @@ public:
         
         std::ostringstream ss; ss <<"Ridge Regression. Lambda= "<< lambda << ". Degree Freedom= "<<df<<"\nNote: For Ridge regression, both F-Stats and t-Stats and R^2 are the rough. (Since the df is continuous) \n\n";
         coutAdding= ss.str();
+        }
+        else {
+            lm_OLS lmOLS( X,y);
+            
+            R2= lmOLS.Rsquare();
+            AdjR2= lmOLS.RsquareAdj();
+            res_variance= lmOLS.resVariance();
+            n= lmOLS.obs_count();
+            p=  lmOLS.regressor_count();
+            df= lmOLS.degreeFreedom();
+            
+            coef= lmOLS.coeff();
+            res= lmOLS.residual();
+            t_stats= lmOLS.tStats();
+            F_stats= lmOLS.FStats();
+            coef_cov= lmOLS.coefCovariance();
+            
+            std::ostringstream ss; ss <<"Ridge Regression. Lambda= "<< lambda << ". Degree Freedom= "<<df<<"\nNote: Lambda =0 so it is a OLS regression. \nFor Ridge regression, both F-Stats and t-Stats and R^2 are the rough. (Since the df is continuous) \n\n";
+            coutAdding= ss.str();
+        }
         
     };
     
     
     
     lm_Ridge(const Eigen::MatrixXd &X, const Eigen::VectorXd &y,
-             std::vector<double> lamRange={0,100}, double tol_multiplier= 1e-3, double tol_error= 1e-4, long iterMAX= 100,
+             std::vector<double> lamRange={1e-6,100}, double tol_multiplier= 1e-3, double tol_error= 1e-4, long iterMAX= 100,
              long K=10, bool addConst= false){
         // lamRange= {lamMIN, lamMAX}. lamMax and lamMin set the range of lambda. k sets how many folds we do in cross validation.
         // tol_multiple sets the stopping condition of optimal lambda search. We stop is the interval length are smaller than tol_multiple*(lamMAX- lamMIN).
@@ -470,20 +497,26 @@ public:
  
  int main(){
  
- //    std::srand(int(time(0)));
- //    Eigen::MatrixXd A;
- //    A.setRandom(1000, 1)*1e4;
- //    // Eigen::MatrixXd C= A+ A.transpose();
- //    Eigen::MatrixXd B;
- //    B.setRandom(1000,1);B= 2*A+B;
- //    Eigen::MatrixXd C(1000,2); C<< A, A;
- //    C.col(0).setOnes();
- //
- //    Eigen::HouseholderQR<Eigen::MatrixXd> qr(A);
- //    std::cout<< qr.solve(B)<<std::endl<<std::endl;
- //
- //    lm_Ridge lm(C,B);
- //    std::cout<< lm<<std::endl;
+ 
+ std::srand(int(time(0)));
+ Eigen::MatrixXd a;
+ a.setRandom(1000, 1)*1e4;
+ Eigen::MatrixXd b;
+ b.setRandom(1000,1)*1e4;
+ 
+ 
+ // Eigen::MatrixXd C= A+ A.transpose();
+ Eigen::MatrixXd B;
+ B.setRandom(1000,1);B= 4*a+4*b+B;
+ Eigen::MatrixXd C(1000,4); C<< a, a, b, a+b;
+ C.col(0).setOnes();
+ 
+ Eigen::HouseholderQR<Eigen::MatrixXd> qr(C);
+ std::cout<< qr.solve(B)<<std::endl<<std::endl;
+ 
+ lm_Ridge lm(C,B,0);
+ std::cout<< lm<<std::endl;
+ 
  
  return 0;
  }

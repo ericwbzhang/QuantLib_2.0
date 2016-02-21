@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0700B7411C716C6400FAB5C3 /* SimuLS.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0700B73F1C716C6400FAB5C3 /* SimuLS.cpp */; };
+		070AC71D1C7A555D00C5A6AD /* FDEEuro.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 070AC71B1C7A555D00C5A6AD /* FDEEuro.cpp */; };
 		0721826D1C78D97A0096E8A8 /* libMathCore.so in Frameworks */ = {isa = PBXBuildFile; fileRef = 0721826B1C78D97A0096E8A8 /* libMathCore.so */; };
 		0721826E1C78D97A0096E8A8 /* libMathMore.so in Frameworks */ = {isa = PBXBuildFile; fileRef = 0721826C1C78D97A0096E8A8 /* libMathMore.so */; };
 		072E22911C690F3D00A3B74A /* SimuEuro.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 072E228F1C690F3D00A3B74A /* SimuEuro.cpp */; };
@@ -17,6 +18,7 @@
 		076B27BB1C5A95C700F0FCEC /* test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 076B27BA1C5A95C700F0FCEC /* test.cpp */; };
 		076B27C61C5A993F00F0FCEC /* BinomialTree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 076B27C41C5A993F00F0FCEC /* BinomialTree.cpp */; };
 		07773C991C69650B00AA10AC /* SimuEuroBarrier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07773C971C69650B00AA10AC /* SimuEuroBarrier.cpp */; };
+		07DCFB661C7910F800B512AA /* HeatPDE.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07DCFB641C7910F800B512AA /* HeatPDE.cpp */; };
 		07ED5DA41C67EE05000A7BE6 /* BinomialBSTree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07ED5DA21C67EE05000A7BE6 /* BinomialBSTree.cpp */; };
 		07ED5DA71C67FD0F000A7BE6 /* AvgBinomialTree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07ED5DA51C67FD0F000A7BE6 /* AvgBinomialTree.cpp */; };
 		07ED5DAA1C680DEC000A7BE6 /* BBSRTree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07ED5DA81C680DEC000A7BE6 /* BBSRTree.cpp */; };
@@ -37,6 +39,10 @@
 /* Begin PBXFileReference section */
 		0700B73F1C716C6400FAB5C3 /* SimuLS.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SimuLS.cpp; sourceTree = "<group>"; };
 		0700B7401C716C6400FAB5C3 /* SimuLS.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; lineEnding = 0; path = SimuLS.hpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
+		070AC7181C7A151000C5A6AD /* LinearSolver_LU.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LinearSolver_LU.hpp; sourceTree = "<group>"; };
+		070AC71A1C7A2C4300C5A6AD /* option_FDE.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = option_FDE.h; sourceTree = "<group>"; };
+		070AC71B1C7A555D00C5A6AD /* FDEEuro.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FDEEuro.cpp; sourceTree = "<group>"; };
+		070AC71C1C7A555D00C5A6AD /* FDEEuro.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FDEEuro.hpp; sourceTree = "<group>"; };
 		0721826B1C78D97A0096E8A8 /* libMathCore.so */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libMathCore.so; path = ../../../../../usr/local/Cellar/root/5.34.34_1/lib/root/libMathCore.so; sourceTree = "<group>"; };
 		0721826C1C78D97A0096E8A8 /* libMathMore.so */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libMathMore.so; path = ../../../../../usr/local/Cellar/root/5.34.34_1/lib/root/libMathMore.so; sourceTree = "<group>"; };
 		072E228E1C690F0000A3B74A /* option_Simulation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = option_Simulation.h; sourceTree = "<group>"; };
@@ -68,6 +74,8 @@
 		07B75C101C742E580003496B /* option_BS.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; lineEnding = 0; path = option_BS.hpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		07C5B88D1C6D626700575CB8 /* Cholesky_LLT.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Cholesky_LLT.hpp; sourceTree = "<group>"; };
 		07C5B8901C6D628000575CB8 /* Cholesky_LDLT.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Cholesky_LDLT.hpp; sourceTree = "<group>"; };
+		07DCFB641C7910F800B512AA /* HeatPDE.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HeatPDE.cpp; sourceTree = "<group>"; };
+		07DCFB651C7910F800B512AA /* HeatPDE.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HeatPDE.hpp; sourceTree = "<group>"; };
 		07DE145E1C6E4FA9005C0D04 /* QR_HHColPiv.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = QR_HHColPiv.hpp; sourceTree = "<group>"; };
 		07DE14611C6E4FD4005C0D04 /* QR_HH.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = QR_HH.hpp; sourceTree = "<group>"; };
 		07ED5DA21C67EE05000A7BE6 /* BinomialBSTree.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BinomialBSTree.cpp; sourceTree = "<group>"; };
@@ -129,6 +137,7 @@
 				075B50BE1C6E9FA300ED6118 /* linearSystemSolver_iterative.hpp */,
 				07764C0C1C6FAD85003C1DC9 /* EigenDecomp.hpp */,
 				07764C0F1C6FC31F003C1DC9 /* OrthogonalDecomp.hpp */,
+				070AC7181C7A151000C5A6AD /* LinearSolver_LU.hpp */,
 			);
 			name = "algebra(practice)";
 			sourceTree = "<group>";
@@ -154,6 +163,8 @@
 		076B27B91C5A95C700F0FCEC /* QuantLib_2.0 */ = {
 			isa = PBXGroup;
 			children = (
+				070AC71A1C7A2C4300C5A6AD /* option_FDE.h */,
+				07DCFB631C790F4400B512AA /* option_FDE */,
 				074A89BF1C6A92C2001440A8 /* algebra.h */,
 				074A89BB1C6A897B001440A8 /* algebra(practice) */,
 				07B75C0D1C742DA20003496B /* regression.h */,
@@ -192,6 +203,17 @@
 				07764C151C6FCDA6003C1DC9 /* lm.hpp */,
 			);
 			name = Regression;
+			sourceTree = "<group>";
+		};
+		07DCFB631C790F4400B512AA /* option_FDE */ = {
+			isa = PBXGroup;
+			children = (
+				07DCFB641C7910F800B512AA /* HeatPDE.cpp */,
+				07DCFB651C7910F800B512AA /* HeatPDE.hpp */,
+				070AC71B1C7A555D00C5A6AD /* FDEEuro.cpp */,
+				070AC71C1C7A555D00C5A6AD /* FDEEuro.hpp */,
+			);
+			name = option_FDE;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -253,6 +275,8 @@
 				07ED5DAA1C680DEC000A7BE6 /* BBSRTree.cpp in Sources */,
 				074514311C6C41970049F987 /* multiNormalRN.cpp in Sources */,
 				074A89B61C6A5FD7001440A8 /* SimuNonPathDepEuroBasket.cpp in Sources */,
+				070AC71D1C7A555D00C5A6AD /* FDEEuro.cpp in Sources */,
+				07DCFB661C7910F800B512AA /* HeatPDE.cpp in Sources */,
 				076B27C61C5A993F00F0FCEC /* BinomialTree.cpp in Sources */,
 				072E22911C690F3D00A3B74A /* SimuEuro.cpp in Sources */,
 				07773C991C69650B00AA10AC /* SimuEuroBarrier.cpp in Sources */,
