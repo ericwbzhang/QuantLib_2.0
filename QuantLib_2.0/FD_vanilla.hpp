@@ -123,7 +123,9 @@ public:
     //constructor
     FD_vanilla(){};
     // use default copy constructor
-    FD_vanilla(const option & o, double priceMin, double priceMax, double tMin, long n, long m, int algorithm, double weight= 1.1, double tol=1.e-7, long iterMAX= 50);
+    FD_vanilla(const option & o, double priceMin, double priceMax, double tMin,
+               long n, long m, int algorithm,
+               double weight= 1.1, double tol=1.e-7, long iterMAX= 50);
     // destructor
     virtual ~ FD_vanilla(){};
     
@@ -144,6 +146,44 @@ public:
     long expirationDiscret() const {return M;};
     option optionInfo() const {return opt;};
 };
+
+
+
+
+
+
+/*
+ 
+ // ************* test ********
+
+int main(){
+    
+    option opt(44,40, 1, 0.06, 0, 0.4, 1, 1); // S=K=1, T=1, r=q=0.01, sigma= 0.2, Call=1, Euro=1
+    
+    opt.Call =0;
+    
+    opt.Euro=0;
+    opt.T=2;
+    
+    option_BS bs(opt);
+    std:: cout<< bs.price()<< std::endl;
+    
+
+    
+    double pMax= opt.S* exp(5* opt.sigma* sqrt(opt.T));
+    double pMin= opt.S* exp(-5* opt.sigma*  sqrt(opt.T));
+    long n= 1e2;
+    long m= 1e4;
+    FD_vanilla fd(opt, pMin, pMax, 0, n, m, 2);
+    
+    std::cout<< fd.computationAlpha()<< std::endl<<fd.computationSuccess()<<std::endl<<fd.valuation(opt.S, 0)<<std::endl;
+    
+    
+    return 0;
+    
+};
+
+*/
 
 
 #endif /* FD_vanilla_hpp */
