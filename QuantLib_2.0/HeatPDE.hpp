@@ -39,16 +39,16 @@ protected:
     bool status; // Backward and CrankNicolson involves linear system solution. status tracks whether there is any unexpected computation error. status= true if everything good, flase if else.
     
     
-    void ForwardEuler();
-    void BackwardEuler();
-    void CrankNicolson();
+    virtual void ForwardEuler();
+    virtual void BackwardEuler();
+    virtual void CrankNicolson();
     // backwardEuler and CrankNicolson involves solving linear system. We also implement a version using iterative linear system solver (SOR)
-    void BackwardEuler_SOR(double weight, double tol, long iterMAX);
-    void CrankNicolson_SOR(double weight, double tol, long iterMAX); 
+    virtual void BackwardEuler_SOR(double weight, double tol, long iterMAX);
+    virtual void CrankNicolson_SOR(double weight, double tol, long iterMAX);
     
     
 public:
-    
+    //constructors
     HeatPDE(){};
     HeatPDE(double coef, double xmin, double xmax, double tmax,
             long x_steps, long t_steps,
@@ -56,14 +56,19 @@ public:
             const ROOT::Math::IBaseFunctionOneDim & left,
             const ROOT::Math::IBaseFunctionOneDim & right,
             int algorithm, double weight= 1.1, double tol= 1.e-5, long iterMAX= 50);
-    
+
+    //destructor
     virtual ~ HeatPDE(){};
     
-    Eigen::MatrixXd computationGrid(){return grid;};
-    int computationMethod() {return method;};
-    double computationAlpha(){return alpha;};
-    bool computationSuccess(){return status;};
-    double evaluation(double x, double t){
+    //methods
+    virtual double dx(){return fabs(xMAX- xMIN)/N;};
+    virtual double dt(){return tMAX/M; };
+    virtual double heatPDECoef() const {return k;};
+    virtual Eigen::MatrixXd computationGrid() const {return grid;};
+    virtual int computationMethod() const  {return method;};
+    virtual double computationAlpha() const {return alpha;};
+    virtual bool computationSuccess() const {return status;};
+    virtual double evaluation(double x, double t) const {
         // evaluate the result at (x,t). x,t must be in [xMIN, xMAX]*[0,tMAX].
         
         double dx= fabs(xMAX- xMIN)/ N;
@@ -80,8 +85,52 @@ public:
         w22= w21* (x- xMIN- dx* j)/dx;
         w21= w21- w22;
         
-        return grid(i,j)* w21+ grid(i,j+1)* w22+ grid(i+1,j)*w11+ grid(i+1, j+1)* w12;
+        if (j+1> N){
+            if(i+1>M) {
+                return grid(i,j);
+            }else
+                return (w11+w12)* grid(i+1,j)+ (w21+w22)* grid(i,j);
+        }else if (i+1 >M) {
+            if (j+1>N){
+                return grid(i,j);
+            }else
+                return (w11+w21)*grid(i,j)+ (w12+w22)*grid(i,j+1);
+        }else {
+            double tmp= grid(i,j)* w21+ w22* grid(i,j+1)+ w11* grid(i+1,j)+ w12* grid(i+1, j+1);
+            return tmp;
+        }
     };
+    
+};
+
+
+
+
+
+
+class HeatPDE_gridUpdate: public HeatPDE {
+    // HeatPDE_gridUpdate accommodates the American option pricing PDE kernals. It introduce a lower bounds function which dynamically sets the lower bounds of u(x,t) at each computation nodes
+    const ROOT::Math::IBaseFunctionMultiDim * lowBound;
+    
+    // methods
+    virtual void ForwardEuler();
+    virtual void BackwardEuler();
+    virtual void CrankNicolson();
+    // backwardEuler and CrankNicolson involves solving linear system. We also implement a version using iterative linear system solver (SOR)
+    virtual void BackwardEuler_SOR(double weight, double tol, long iterMAX);
+    virtual void CrankNicolson_SOR(double weight, double tol, long iterMAX);
+public:
+    // constructors
+    HeatPDE_gridUpdate(){};
+    HeatPDE_gridUpdate(double coef, double xmin, double xmax, double tmax,
+                       long x_steps, long t_steps,
+                       const ROOT::Math::IBaseFunctionOneDim & down,
+                       const ROOT::Math::IBaseFunctionOneDim & left,
+                       const ROOT::Math::IBaseFunctionOneDim & right,
+                       const ROOT::Math::IBaseFunctionMultiDim & lowbound,
+                       int algorithm, double weight= 1.1, double tol= 1.e-5, long iterMAX= 50);
+    // destructors
+    virtual ~ HeatPDE_gridUpdate(){};
     
 };
 

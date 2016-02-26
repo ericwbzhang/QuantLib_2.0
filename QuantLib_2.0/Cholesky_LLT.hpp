@@ -24,6 +24,7 @@ public:
         U= A.llt().matrixU();
     }
     
+    
     virtual ~Cholesky_LLT(){};
     
     Eigen::MatrixXd factorU(){return U;};
