@@ -12,7 +12,12 @@
 #include <stdio.h>
 
 #include "BinomialBSTree.hpp"
+namespace QLib{
+    namespace Tree{
+        using namespace QLib;
+        using namespace QLib::Tree;
 
+        
 class BBSRTree {
 protected:
     BinomialBSTree *bt1;
@@ -21,14 +26,23 @@ protected:
     
 public:
     BBSRTree(){};
-    BBSRTree(const option & o, long steps);
+    BBSRTree(const option & o, long steps){
+        bt1= new BinomialBSTree(o, steps);
+        bt2= new BinomialBSTree(o, long(steps/2));
+    };
     virtual ~BBSRTree(){delete bt1; delete bt2;} ;
     
-    double valuation();
-    double delta();
-    double gamma();
-    double theta();
+    double valuation(){    return 2*bt1->valuation()- bt2->valuation();};
+    double delta(){
+        return  2*bt1->delta()- bt2->delta();
+    };
+    double gamma(){
+        return 2*bt1->gamma()- bt2->gamma();
+    };
+    double theta(){return 2*bt1->theta()- bt2->theta();};
     
 };
+    }
+}
 
 #endif /* BBSRTree_hpp */

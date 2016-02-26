@@ -12,6 +12,10 @@
 #include <stdio.h>
 #include <Eigen/Dense>
 
+
+namespace QLib{
+    using namespace QLib;
+
 class LinearSolver_LU{
 // LinearSolver_LU defines the interface and method to solve a linear system L*U* x= B, where L is a lower m*m triangular matrix and U is an upper m*n triangular matrix.
 // Note: If L&U comes from a LU decomposition, L is invertible and has size m*m with diagonal 1, U is a m*n matrix.
@@ -34,5 +38,5 @@ public:
         else return false;
     };
 };
-
+}
 #endif /* LinearSolver_LU_hpp */

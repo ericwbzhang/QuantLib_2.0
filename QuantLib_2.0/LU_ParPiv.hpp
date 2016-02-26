@@ -11,6 +11,8 @@
 
 #include <stdio.h>
 #include <Eigen/Dense>
+namespace QLib{
+    using namespace QLib;
 
 class LU_ParPiv{
 // LU_ParPiv wraps Eigen::PartialPivLU. It plays partial permutation LU decomp to the input matrix A, which must be an invertible square matrix.
@@ -40,7 +42,7 @@ public:
     };
 };
 
-
+}
 
 
 #endif /* LU_ParPiv_hpp */

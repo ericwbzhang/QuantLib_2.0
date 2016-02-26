@@ -12,6 +12,9 @@
 #include <stdio.h>
 #include <Eigen/Dense>
 
+namespace QLib{
+    using namespace QLib;
+
 class EigenDecomp{
 // EigenDecomp wraps the Eigen::EigenSolver. It takes input of a real square matrix A, and conducts eigenvalue decomp.
 // For a square real matrix A, there is a unique decomp A=VDV^-1. D is diag matrix containing the eigenvalue of A. The column of V is the eigenvector.
@@ -52,5 +55,5 @@ public:
 
 };
 
-
+}
 #endif /* EigenDecomp_hpp */

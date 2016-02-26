@@ -15,6 +15,9 @@
 #include "options_info.hpp"
 #include <boost/math/distributions/normal.hpp>
 
+namespace QLib{
+    using namespace QLib;
+
 struct option_BS{
 
     option opt;
@@ -125,6 +128,6 @@ struct option_BS{
     }
 };
 
-
+}
 
 #endif /* option_BS_hpp */

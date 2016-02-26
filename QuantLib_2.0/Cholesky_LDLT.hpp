@@ -12,7 +12,8 @@
 #include <stdio.h>
 #include <Eigen/Dense>
 
-
+namespace QLib{
+    using namespace QLib;
 class Cholesky_LDLT {
 
     // This class wraps the Eigen::LDLT class, which performs a robust Cholesky decomp of a symmetric posive semidefinite matrix A, such that A= P'U'DUP where P is a permutation matrix and U is a unit upper triangle matrix and D is a diag matrix
@@ -66,5 +67,6 @@ public:
     
     bool invertible(){return spd_flag;};
 };
+}
 
 #endif /* Cholesky_LDLT_hpp */

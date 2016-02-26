@@ -12,6 +12,9 @@
 #include <stdio.h>
 #include <Eigen/Dense>
 
+namespace QLib{
+    
+    using namespace QLib;
 class LU_FullPiv{
 // LU_FullPiv wraps the Eigen::FullPivLU class. It gets initialized with an input matrix A to be decomposed. A is a general real matix, not necessary to be square matrix.
 // For a general matrix A with size m*n, it can be decomposed as PAQ= LU, P and Q are permutation matrix. L is a m*m unit-lower triangular matrix, while U is an upper triangular matrix with size m*n.
@@ -57,5 +60,5 @@ public:
     
 };
 
-
+}
 #endif /* LU_FullPiv_hpp */

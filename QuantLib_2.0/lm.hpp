@@ -20,6 +20,8 @@
 
 // This module contains several linear regression models. They are all based on least square method.
 
+namespace QLib{
+    using namespace QLib;
 
 
 class lm{
@@ -490,7 +492,7 @@ public:
     
     
 };
-
+}
 
 /*
  ************ test *************

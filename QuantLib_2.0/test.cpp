@@ -16,7 +16,7 @@
 #include <random>
 #include <Math/IFunction.h> // ROOT Math library
 
-
+using namespace QLib;
 class func_f: public ROOT::Math::IBaseFunctionOneDim {
 protected:
     double DoEval(double x) const {
@@ -73,15 +73,16 @@ int main(){
     double pMin= opt.S* exp(-5* opt.sigma*  sqrt(opt.T));
     long n= 1e2;
     long m= 1e4;
-    FD_vanilla fd(opt, pMin, pMax, 0, n, m, 2);
+    QLib::FD::FD_vanilla fd(opt, pMin, pMax, 0, n, m, 2);
     
     std::cout<< fd.computationAlpha()<< std::endl<<fd.computationSuccess()<<std::endl<<fd.valuation(opt.S, 0)<<std::endl;
     
-    sampleCalculator_Euro lsEuro(opt, option_BS(opt).price());
-    SimuLS_CV LSAmerCV(opt, N, M, lsEuro);
+    Simu::sampleCalculator_Euro lsEuro(opt, option_BS(opt).price());
+    Simu::SimuLS_CV LSAmerCV(opt, N, M, lsEuro);
     
     std::cout<<LSAmerCV.valuation_calibrated() << std::endl<< LSAmerCV.valuation_stdiv_calibrated()<< std::endl << std::endl<< LSAmerCV.valuation_raw()<<std::endl<< LSAmerCV.valuation_stdiv_raw()<<std::endl;
     
+    Tree::BBSRTree (opt, 1e4);
     
 
 

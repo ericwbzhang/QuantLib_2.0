@@ -12,6 +12,9 @@
 #include <stdio.h>
 #include <Eigen/Dense>
 
+namespace QLib{
+    using namespace QLib;
+
 class QR_HHColPiv{
 // QR_HHColPiv wrapps Eigen::ColPivHouseHolderQR. It takes input matrix A, a general real (or complex) matrix, and decompose it as AP= QR. P is a permutation matrix (we do col pivoting), and Q is an orthognal (unitary in complex) matrix and R is an upper triangular matrix.
 // QR decomp applies to general matrix. The col pivoting QR generates more stable result and higher accuracy.
@@ -48,5 +51,5 @@ public:
 };
 
 
-
+}
 #endif /* QR_HHColPiv_hpp */

@@ -11,6 +11,8 @@
 
 #include <stdio.h>
 #include <Eigen/Dense>
+namespace QLib{
+    using namespace QLib;
 
 class QR_HH{
 // QR_HH wraps Eigen::HouseholderQR. It takes input matrix A which is a general real matrix.
@@ -35,4 +37,5 @@ public:
     
     
 };
+}
 #endif /* QR_HH_hpp */

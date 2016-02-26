@@ -15,6 +15,9 @@
 #include <Math/IFunction.h>
 #include <Eigen/Dense>
 
+namespace QLib{
+        using namespace QLib;
+
 struct option{
     double S, K, T, r, q, sigma;
     int Call;// Call option if Call=1; Put if Call=0
@@ -120,6 +123,7 @@ struct nonPathDependentBasket_option{
     };
 };
 
+}
 
 
 #endif /* options_info_hpp */

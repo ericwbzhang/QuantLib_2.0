@@ -11,6 +11,8 @@
 
 #include <stdio.h>
 #include <Eigen/Dense>
+namespace QLib{
+    using namespace QLib;
 
 class SVD_Jb{
 // SVD_Jb wraps the Eigen::JacobiSVD class. It takes input  a general real matrix A of n*p. The SVD of A= USV'. U n*n orthogonal matrix, V p*p orthogonal matrix and S is n*p diagonal matrix with non negative entries.
@@ -95,5 +97,5 @@ public:
     
     
 };
-
+}
 #endif /* SVD_Jb_hpp */

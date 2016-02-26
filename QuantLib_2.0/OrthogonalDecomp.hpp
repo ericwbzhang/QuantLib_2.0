@@ -13,6 +13,10 @@
 #include <Eigen/Dense>
 #include "EigenDecomp.hpp"
 
+
+namespace QLib{
+    using namespace QLib;
+
 class OrthogonalDecomp{
 // OrthogonalDecomp conducts Orthogonal decomp for a real symmetric matrix A. A= VDV'. V is orthogonal matrix. D is diagonal.
 // It takes use of Eigen::HouseholderQR method
@@ -45,4 +49,5 @@ public:
     Eigen::MatrixXd MatrixD(){return D;};
 
 };
+}
 #endif /* OrthogonalDecomp_hpp */

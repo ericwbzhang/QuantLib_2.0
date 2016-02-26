@@ -13,6 +13,9 @@
 #include <stdio.h> 
 #include <Eigen/Dense> 
 
+namespace QLib{
+    using namespace QLib; 
+
 class Cholesky_LLT {
 
 protected:
@@ -30,5 +33,7 @@ public:
     Eigen::MatrixXd factorU(){return U;};
     
 };
+}
+
 
 #endif /* Cholesky_LLT_hpp */
